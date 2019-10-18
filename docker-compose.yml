@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+  consul:
+    image: consul:latest
+    ports:
+      - 8500:8500
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
