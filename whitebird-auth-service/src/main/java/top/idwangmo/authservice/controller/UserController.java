@@ -7,14 +7,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
-@RestController
-@RequestMapping("/users")
 @Slf4j
+@RestController
+@RequestMapping("users")
 public class UserController {
 
     @GetMapping("current")
     public Principal getUser(Principal principal) {
-        log.error(principal.toString());
+        log.info(">>>>>>>>>>>>>>");
+        log.info(principal.toString());
+        log.info(">>>>>>>>>>>>>>");
+
         return principal;
     }
 
