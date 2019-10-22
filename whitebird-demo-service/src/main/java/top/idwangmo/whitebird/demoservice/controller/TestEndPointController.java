@@ -8,9 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
+/**
+ * 测试部分功能用.
+ *
+ * @author idwangmo
+ */
 @RestController
 @Slf4j
-public class TestEndPoiontController {
+public class TestEndPointController {
 
     @GetMapping("/getPrinciple")
     public OAuth2Authentication getPrinciple(OAuth2Authentication oAuth2Authentication, Principal principal, Authentication authentication) {

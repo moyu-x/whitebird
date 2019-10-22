@@ -1,9 +1,12 @@
 package top.idwangmo.authservice.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.*;
+import top.idwangmo.authservice.entity.User;
+import top.idwangmo.authservice.entity.repository.UserRepository;
 
 import java.security.Principal;
 
@@ -12,6 +15,11 @@ import java.security.Principal;
 @RequestMapping("users")
 public class UserController {
 
+    private static final BCryptPasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
+
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping("current")
     public Principal getUser(Principal principal) {
         log.info(">>>>>>>>>>>>>>");
@@ -19,6 +27,19 @@ public class UserController {
         log.info(">>>>>>>>>>>>>>");
 
         return principal;
+    }
+
+    @PostMapping("registry")
+    public User createUser(@RequestParam("username") String username,
+                           @RequestParam("password") String password) {
+        if (StringUtils.isNotBlank(username) && StringUtils.isNotBlank(password)) {
+            User user = new User();
+            user.setUsername(username);
+            user.setPassword("{bcrypt}" + PASSWORD_ENCODER.encode(password));
+            return userRepository.save(user);
+        }
+
+        return null;
     }
 
 }
