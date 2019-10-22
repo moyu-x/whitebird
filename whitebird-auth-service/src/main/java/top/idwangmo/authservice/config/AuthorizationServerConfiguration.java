@@ -3,6 +3,7 @@ package top.idwangmo.authservice.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -12,7 +13,9 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 import top.idwangmo.authservice.service.UserServiceDetail;
 
 import javax.sql.DataSource;
@@ -42,7 +45,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Bean
     public TokenStore tokenStore() {
-        return new JdbcTokenStore(dataSource);
+        // token 存储于数据库中
+//        return new JdbcTokenStore(dataSource);
+        return new JwtTokenStore(jwtAccessTokenConverter());
     }
 
     /**
@@ -61,7 +66,12 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 //                .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
 
         // 保存在数据库中
-        endpoints.tokenStore(tokenStore).authenticationManager(authenticationManager)
+//        endpoints.tokenStore(tokenStore).authenticationManager(authenticationManager)
+//                .userDetailsService(userServiceDetail)
+//                .authenticationManager(authenticationManager);
+
+        endpoints.tokenStore(tokenStore)
+                .tokenEnhancer(jwtAccessTokenConverter())
                 .userDetailsService(userServiceDetail)
                 .authenticationManager(authenticationManager);
 
@@ -79,5 +89,15 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         // 允许表单验证
         security.allowFormAuthenticationForClients().tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()");
+    }
+
+
+    @Bean
+    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("test-jwt.jks"),
+                "test123".toCharArray());
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("test-jwt"));
+        return converter;
     }
 }
