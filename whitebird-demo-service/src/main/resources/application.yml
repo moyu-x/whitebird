@@ -12,5 +12,4 @@ security:
       client-secret: 123456
       access-token-uri: http://localhost:11010/oauth/token
       grant-type: password
-      scope: servera
-      resource-ids: order
+      scope: server
