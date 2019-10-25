@@ -18,3 +18,22 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - ~/data/mysql:/var/lib/mysql
+  apollo:
+    image: idoop/docker-apollo:latest
+    ports:
+      - 8070:8070
+      - 8080:8080
+      - 8090:8090
+    environment:
+      # 开启 Portal,默认端口: 8070
+      PORTAL_DB: jdbc:mysql://mysql/ApolloPortalDB
+      PORTAL_DB_USER: root
+      PORTAL_DB_PWD: root
+      # 如果 portal 需要开启 ldap 或 ad 域验证,须设置该环境变量为 TRUE
+      #PORTAL_LDAP: "TRUE"
+
+      # 开启 dev 环境, 默认端口: config 8080, admin 8090
+      DEV_DB: jdbc:mysql://mysql/ApolloConfigDBDev
+      DEV_DB_USER: root
+      DEV_DB_PWD: root
+      DEV_LB: 127.0.0.1

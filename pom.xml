@@ -21,6 +21,7 @@
     <modules>
         <module>whitebird-auth-service</module>
         <module>whitebird-demo-service</module>
+        <module>whitebird-commons</module>
     </modules>
 
 </project>
