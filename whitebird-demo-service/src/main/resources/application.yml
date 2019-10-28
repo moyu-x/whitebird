@@ -1,6 +1,10 @@
 spring:
   application:
     name: whitebird-demo-service
+  cloud:
+    consul:
+      discovery:
+        instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.uuid}}}
 server:
   port: 11011
 security:

@@ -2,6 +2,7 @@ package top.idwangmo.whitebird.commoncore.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import top.idwangmo.whitebird.commoncore.model.ExceptionBody;
 
-import java.nio.file.AccessDeniedException;
+import java.sql.SQLException;
 
 /**
  * 通用异常处理.
@@ -69,4 +70,30 @@ public class DefaultExceptionAdvice {
         return defHandler("不支持的媒体格式", e, HttpStatus.UNSUPPORTED_MEDIA_TYPE);
     }
 
+    /**
+     * SQL 异常
+     */
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler({SQLException.class})
+    public ExceptionBody handleSqlException(SQLException e) {
+        return defHandler("服务器运行的SQL出现异常", e, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    /**
+     * 业务异常
+     */
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler({BusinessException.class})
+    public ExceptionBody handleBusinessException(BusinessException e) {
+        return defHandler(e.getMessage(), e, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    /**
+     * 处理其他所有的异常
+     */
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler({Exception.class})
+    public ExceptionBody handleException(Exception e) {
+        return defHandler("其他未知的服务器异常", e, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

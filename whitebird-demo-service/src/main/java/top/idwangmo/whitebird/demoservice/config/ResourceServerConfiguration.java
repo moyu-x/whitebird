@@ -1,6 +1,5 @@
 package top.idwangmo.whitebird.demoservice.config;
 
-import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,9 +18,11 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .requestMatchers(EndpointRequest.to("health", "flyway")).permitAll()
-                .anyRequest().authenticated();
+//        http.authorizeRequests()
+//                .antMatchers("demo").permitAll()
+//                .requestMatchers(EndpointRequest.to("health", "flyway")).permitAll()
+//                .anyRequest().authenticated();
+        http.authorizeRequests().anyRequest().permitAll();
     }
 
 }

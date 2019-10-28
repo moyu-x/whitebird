@@ -1,6 +1,7 @@
 package top.idwangmo.whitebird.demoservice.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +18,12 @@ import java.security.Principal;
 @Slf4j
 public class TestEndPointController {
 
+    @Value("${spring.cloud.consul.discovery.instance-id}")
+    private String instanceId;
+
     @GetMapping("/getPrinciple")
-    public OAuth2Authentication getPrinciple(OAuth2Authentication oAuth2Authentication, Principal principal, Authentication authentication) {
+    public OAuth2Authentication getPrinciple(OAuth2Authentication oAuth2Authentication, Principal principal,
+                                             Authentication authentication) {
         log.info(oAuth2Authentication.getUserAuthentication().getAuthorities().toString());
         log.info(oAuth2Authentication.toString());
         log.info("principal.toString() " + principal.toString());
@@ -28,4 +33,9 @@ public class TestEndPointController {
         return oAuth2Authentication;
     }
 
+
+    @GetMapping("demo")
+    public String demo() {
+        return instanceId;
+    }
 }
