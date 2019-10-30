@@ -134,16 +134,46 @@ public class Sequence {
     }
 
     /**
+     * 反推通过 Snowflake 算法生成 id 的 workerId.
+     *
+     * @param id Snowflake 算法生成的 id
+     * @return 所属的机器Id
+     */
+    public static long getWorkerId(long id) {
+        return id >> WORKER_ID_SHIFT & ~(-1 << WORKER_ID_BITS);
+    }
+
+    /**
+     * 反推通过 Snowflake 算法生 id 的 dataCenterId
+     *
+     * @param id Snowflake 算法生成的 id
+     * @return 所属数据中心
+     */
+    public static long getDataCenterId(long id) {
+        return id >> DATA_CENTER_ID_SHIFT & ~(-1 << DATA_CENTER_ID_BITS);
+    }
+
+    /**
+     * 反推通过 Snowflake 算法生成 id 的时间，毫秒时间戳
+     *
+     * @param id Snowflake 算法生成的Id
+     * @return 所属数据中心
+     */
+    public static long getGenerateDate(long id) {
+        return (id >> TIMESTAMP_LIFT_SHIFT & ~(-1L << 41L)) + START_TIMESTAMP;
+    }
+
+    /**
      * 用 Spring Cloud 实例的 ID 加上直接 hash 取最低的几位.
      *
      * 如果 instanceId 为空，则使用 ip 获取最后一部分数据
      */
-    public static long getWorkerId() {
+    private static long getWorkerId() {
         if (Objects.nonNull(instanceIdStc)) {
             return (instanceIdStc.hashCode() & 0XFFFF) % (MAX_WORK_ID + 1);
         }
 
-        long ip = 0;
+        long ip;
         try {
             InetAddress inetAddress = InetAddress.getLocalHost();
             byte[] addressByte = inetAddress.getAddress();
@@ -157,7 +187,7 @@ public class Sequence {
     /**
      * 当为空构造器的时候获取数据中心id，用 mac + ip 的 hashcode 取最低几位
      */
-    public static long getDataCenterId() {
+    private static long getDataCenterId() {
         long id = 0L;
 
         try {

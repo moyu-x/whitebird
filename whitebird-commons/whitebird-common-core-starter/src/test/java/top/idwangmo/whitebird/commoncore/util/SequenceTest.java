@@ -1,5 +1,7 @@
 package top.idwangmo.whitebird.commoncore.util;
 
+import cn.hutool.core.lang.Snowflake;
+import cn.hutool.core.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +25,15 @@ class SequenceTest {
         }
 
         assertEquals(maxTimes, sets.size());
+    }
+
+    @Test
+    public void testHutool() {
+        Snowflake snowflake = IdUtil.createSnowflake(1, 2);
+        for (int i = 0; i < 10000; i++) {
+            log.info(String.valueOf(snowflake.nextId()));
+        }
+
     }
 
 }
