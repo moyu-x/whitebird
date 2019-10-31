@@ -1,0 +1,5 @@
+allprojects {
+    group 'top.idwangmo.whitebird'
+    version '0.0.1'
+    apply plugin: 'idea'
+}
