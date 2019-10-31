@@ -4,30 +4,7 @@ plugins {
     id 'java'
 }
 
-group = 'top.idwangmo.whitebird'
-version = '0.0.1-SNAPSHOT'
 description = 'whitebird-auth-service'
-sourceCompatibility = '11'
-
-configurations {
-    developmentOnly
-    runtimeClasspath {
-        extendsFrom developmentOnly
-    }
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
-
-repositories {
-    mavenLocal()
-    mavenCentral()
-    maven { url 'https://repo.spring.io/milestone' }
-}
-
-ext {
-    set('springCloudVersion', "Hoxton.RC1")
-}
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -53,8 +30,4 @@ dependencyManagement {
     imports {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
-}
-
-test {
-    useJUnitPlatform()
 }
