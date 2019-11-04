@@ -10,7 +10,7 @@ import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
 import org.springframework.http.HttpStatus;
 import org.springframework.lang.Nullable;
-import top.idwangmo.whitebird.commoncore.model.ExceptionBody;
+import top.idwangmo.whitebird.webspringbootstarter.model.ExceptionBody;
 
 import java.lang.reflect.Method;
 

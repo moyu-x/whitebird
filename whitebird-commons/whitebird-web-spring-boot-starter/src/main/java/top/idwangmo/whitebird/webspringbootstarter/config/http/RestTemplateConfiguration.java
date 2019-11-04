@@ -5,8 +5,9 @@ import okhttp3.ConnectionPool;
 import okhttp3.OkHttpClient;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cloud.commons.httpclient.DefaultOkHttpClientConnectionPoolFactory;
 import org.springframework.cloud.commons.httpclient.OkHttpClientConnectionPoolFactory;
-import org.springframework.cloud.commons.httpclient.OkHttpClientFactory;
 import org.springframework.cloud.openfeign.support.FeignHttpClientProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +24,13 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @AllArgsConstructor
 @ConditionalOnClass(OkHttpClient.class)
+@EnableConfigurationProperties({FeignHttpClientProperties.class})
 public class RestTemplateConfiguration {
+
+    @Bean
+    public OkHttpClientConnectionPoolFactory okHttpClientConnectionPoolFactory() {
+        return new DefaultOkHttpClientConnectionPoolFactory();
+    }
 
     /**
      * OkHttp3 链接池配置
@@ -45,16 +52,15 @@ public class RestTemplateConfiguration {
     /**
      * 配置 OkHttpClient.
      *
-     * @param clientFactory        clientFactory
      * @param connectionPool       connectionPool
      * @param httpClientProperties httpClientProperties
-     * @return
+     * @return 连接配置
      */
     @Bean
     @ConditionalOnMissingBean(OkHttpClient.class)
-    public okhttp3.OkHttpClient httpClient(OkHttpClientFactory clientFactory, ConnectionPool connectionPool,
+    public okhttp3.OkHttpClient httpClient(ConnectionPool connectionPool,
                                            FeignHttpClientProperties httpClientProperties) {
-        return clientFactory.createBuilder(httpClientProperties.isDisableSslValidation())
+        return new OkHttpClient().newBuilder()
                 .connectTimeout(httpClientProperties.getConnectionTimeout(), TimeUnit.MILLISECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
