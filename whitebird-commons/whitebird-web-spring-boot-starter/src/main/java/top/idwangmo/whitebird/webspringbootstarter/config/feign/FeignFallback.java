@@ -10,7 +10,7 @@ import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
 import org.springframework.http.HttpStatus;
 import org.springframework.lang.Nullable;
-import top.idwangmo.whitebird.webspringbootstarter.model.ExceptionBody;
+import top.idwangmo.whitebird.webspringbootstarter.model.ExceptionResponse;
 
 import java.lang.reflect.Method;
 
@@ -37,7 +37,7 @@ public class FeignFallback<T> implements MethodInterceptor {
 
         // 不是 feign 的错误 或者当请求中的数据为空时候
         if (!(cause instanceof FeignException) || ArrayUtil.isEmpty(((FeignException) cause).content())) {
-            return new ExceptionBody(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Feign 请求发生错误", errorMessage);
+            return new ExceptionResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Feign 请求发生错误", errorMessage);
         }
 
         // 转换成 json 进行读取

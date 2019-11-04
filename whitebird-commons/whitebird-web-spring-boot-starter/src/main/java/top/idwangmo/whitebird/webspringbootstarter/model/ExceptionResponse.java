@@ -16,12 +16,21 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExceptionBody {
+public class ExceptionResponse {
 
+    /**
+     * 错误码.
+     */
     private Integer code;
 
+    /**
+     * 错误信息，一般是手写的.
+     */
     private String message;
 
+    /**
+     * 错误描述，来自于 exception.
+     */
     private String description;
 
 }

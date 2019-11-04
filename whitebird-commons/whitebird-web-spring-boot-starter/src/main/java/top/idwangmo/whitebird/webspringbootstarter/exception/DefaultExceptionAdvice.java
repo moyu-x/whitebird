@@ -8,7 +8,7 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import top.idwangmo.whitebird.webspringbootstarter.model.ExceptionBody;
+import top.idwangmo.whitebird.webspringbootstarter.model.ExceptionResponse;
 
 import java.sql.SQLException;
 
@@ -29,9 +29,9 @@ public class DefaultExceptionAdvice {
      * @param httpStatus 状态码
      * @return ExceptionBody
      */
-    private static ExceptionBody defHandler(String msg, Exception e, HttpStatus httpStatus) {
+    private static ExceptionResponse defHandler(String msg, Exception e, HttpStatus httpStatus) {
         log.error(msg, e);
-        return ExceptionBody.builder().message(msg).code(httpStatus.value()).description(e.getMessage()).build();
+        return ExceptionResponse.builder().message(msg).code(httpStatus.value()).description(e.getMessage()).build();
     }
 
     /**
@@ -39,7 +39,7 @@ public class DefaultExceptionAdvice {
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({IllegalArgumentException.class})
-    public ExceptionBody badRequestException(IllegalArgumentException e) {
+    public ExceptionResponse badRequestException(IllegalArgumentException e) {
         return defHandler("参数解析错误", e, HttpStatus.BAD_REQUEST);
     }
 
@@ -48,7 +48,7 @@ public class DefaultExceptionAdvice {
      */
     @ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler({AccessDeniedException.class})
-    public ExceptionBody accessDeniedException(AccessDeniedException e) {
+    public ExceptionResponse accessDeniedException(AccessDeniedException e) {
         return defHandler("没有权限访问本系统", e, HttpStatus.FORBIDDEN);
     }
 
@@ -57,7 +57,7 @@ public class DefaultExceptionAdvice {
      */
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
     @ExceptionHandler({HttpRequestMethodNotSupportedException.class})
-    public ExceptionBody httpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e) {
+    public ExceptionResponse httpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e) {
         return defHandler("不支持当前方法", e, HttpStatus.METHOD_NOT_ALLOWED);
     }
 
@@ -66,7 +66,7 @@ public class DefaultExceptionAdvice {
      */
     @ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
     @ExceptionHandler({HttpMediaTypeNotSupportedException.class})
-    public ExceptionBody httpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException e) {
+    public ExceptionResponse httpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException e) {
         return defHandler("不支持的媒体格式", e, HttpStatus.UNSUPPORTED_MEDIA_TYPE);
     }
 
@@ -75,7 +75,7 @@ public class DefaultExceptionAdvice {
      */
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler({SQLException.class})
-    public ExceptionBody handleSqlException(SQLException e) {
+    public ExceptionResponse handleSqlException(SQLException e) {
         return defHandler("服务器运行的SQL出现异常", e, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -84,7 +84,7 @@ public class DefaultExceptionAdvice {
      */
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler({BusinessException.class})
-    public ExceptionBody handleBusinessException(BusinessException e) {
+    public ExceptionResponse handleBusinessException(BusinessException e) {
         return defHandler(e.getMessage(), e, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -93,7 +93,7 @@ public class DefaultExceptionAdvice {
      */
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler({Exception.class})
-    public ExceptionBody handleException(Exception e) {
+    public ExceptionResponse handleException(Exception e) {
         return defHandler("其他未知的服务器异常", e, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
