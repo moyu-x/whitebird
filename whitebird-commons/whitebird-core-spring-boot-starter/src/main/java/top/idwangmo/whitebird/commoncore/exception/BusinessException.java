@@ -1,4 +1,4 @@
-package top.idwangmo.whitebird.webspringbootstarter.exception;
+package top.idwangmo.whitebird.commoncore.exception;
 
 /**
  * 业务异常.

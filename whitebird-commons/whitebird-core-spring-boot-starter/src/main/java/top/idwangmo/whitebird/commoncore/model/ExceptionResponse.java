@@ -1,4 +1,4 @@
-package top.idwangmo.whitebird.webspringbootstarter.model;
+package top.idwangmo.whitebird.commoncore.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

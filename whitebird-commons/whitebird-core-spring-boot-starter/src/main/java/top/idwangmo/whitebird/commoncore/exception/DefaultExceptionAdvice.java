@@ -1,4 +1,4 @@
-package top.idwangmo.whitebird.webspringbootstarter.exception;
+package top.idwangmo.whitebird.commoncore.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -8,7 +8,7 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import top.idwangmo.whitebird.webspringbootstarter.model.ExceptionResponse;
+import top.idwangmo.whitebird.commoncore.model.ExceptionResponse;
 
 import java.sql.SQLException;
 
