@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import top.idwangmo.authservice.entity.repository.UserRepository;
 
 @Service
-public class UserServiceDetail implements UserDetailsService {
+public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;

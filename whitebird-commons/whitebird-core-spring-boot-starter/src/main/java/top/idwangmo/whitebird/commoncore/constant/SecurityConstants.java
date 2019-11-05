@@ -21,4 +21,9 @@ public class SecurityConstants {
      * 用户角色头.
      */
     public static String ROLE_HEADER = "x-role-header";
+
+    /**
+     * token请求头名称
+     */
+    public static String TOKEN_HEADER = "Authorization";
 }

@@ -6,9 +6,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * whitebird user.
+ *
+ * @author idwangmo
+ */
 @Data
 @Entity
 public class User implements UserDetails {
+
+    private static final long serialVersionUID = 3375127912190599612L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,5 +48,4 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
 }

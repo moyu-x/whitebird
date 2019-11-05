@@ -53,6 +53,15 @@ public class DefaultExceptionAdvice {
     }
 
     /**
+     * 返回状态码: 404
+     */
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler({NotFoundException.class})
+    public ExceptionResponse notFoundException(NotFoundException e) {
+        return defHandler(e.getMessage(), e, HttpStatus.NOT_FOUND);
+    }
+
+    /**
      * 返回状态码 405
      */
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
