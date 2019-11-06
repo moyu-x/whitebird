@@ -1,6 +1,5 @@
 package top.idwangmo.authservice.config;
 
-import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,14 +32,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors()
-                .disable()
-                .csrf()
-                .disable()
+        http.csrf().disable();
+        http
+                .requestMatchers().antMatchers("/oauth/**", "/login/**", "/logout/**")
+                .and()
                 .authorizeRequests()
-                .requestMatchers(EndpointRequest.to("health", "flyway", "oauth")).permitAll()
-                .anyRequest()
-                .authenticated();
+                .antMatchers("/oauth/**").authenticated()
+                .and()
+                .formLogin().permitAll();
     }
 
 }
