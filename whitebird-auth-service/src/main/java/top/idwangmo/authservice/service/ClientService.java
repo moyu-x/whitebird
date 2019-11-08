@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import top.idwangmo.authservice.entity.Client;
 import top.idwangmo.authservice.entity.repository.ClientRepository;
@@ -26,6 +28,8 @@ import java.util.stream.Collectors;
 @Service
 public class ClientService {
 
+    private PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
     @Autowired
     private ClientRepository clientRepository;
 
@@ -34,7 +38,10 @@ public class ClientService {
             throw new BusinessException("应用编号不能重复");
         }
 
-        return clientRepository.save(ClientMapper.CLIENT_MAPPER.toClient(clientRequest)).getId();
+        Client client = ClientMapper.CLIENT_MAPPER.toClient(clientRequest);
+        client.setClientSecret(passwordEncoder.encode(clientRequest.getClientSecret() ));
+
+        return clientRepository.save(client).getId();
     }
 
     public PageImpl<ClientResponse> retrieveClientList(Pageable pageable) {

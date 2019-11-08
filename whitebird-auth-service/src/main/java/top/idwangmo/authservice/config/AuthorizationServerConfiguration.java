@@ -11,10 +11,10 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
+import top.idwangmo.authservice.service.ClientDetailService;
 import top.idwangmo.authservice.service.UserService;
 
 import javax.sql.DataSource;
@@ -41,6 +41,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ClientDetailService clientDetailService;
+
     @Bean
     public TokenStore tokenStore() {
         return new RedisTokenStore(redisConnectionFactory);
@@ -51,7 +54,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.withClientDetails(new JdbcClientDetailsService(dataSource));
+        clients.withClientDetails(clientDetailService);
     }
 
     @Override

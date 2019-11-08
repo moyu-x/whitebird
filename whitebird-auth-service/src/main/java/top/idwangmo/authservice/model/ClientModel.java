@@ -24,4 +24,6 @@ public class ClientModel {
 
     private Integer refreshTokenValidity;
 
+    private String webServerRedirectUri;
+
 }
