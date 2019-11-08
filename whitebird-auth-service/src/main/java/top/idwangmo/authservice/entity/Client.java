@@ -40,4 +40,6 @@ public class Client extends BaseEntity {
 
     private String webServerRedirectUri;
 
+    private boolean autoApprove = false;
+
 }

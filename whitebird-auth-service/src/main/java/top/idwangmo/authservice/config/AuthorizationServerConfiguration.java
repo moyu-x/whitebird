@@ -17,7 +17,6 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
 import top.idwangmo.authservice.service.ClientDetailService;
 import top.idwangmo.authservice.service.UserService;
 
-import javax.sql.DataSource;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -31,9 +30,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Autowired
     public AuthenticationManager authenticationManager;
-
-    @Autowired
-    private DataSource dataSource;
 
     @Autowired
     private RedisConnectionFactory redisConnectionFactory;
