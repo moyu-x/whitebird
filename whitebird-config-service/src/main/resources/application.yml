@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: whitebird-config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${HOME}/whitebird-project/whitebird
+          search-paths: whitebird-config-folder
+        bootstrap: true
+server:
+  port: 11012

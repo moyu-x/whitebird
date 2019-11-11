@@ -16,6 +16,8 @@ allprojects {
 
     ext {
         set('springCloudVersion', "Hoxton.RC1")
+        set('springBootVersion', "2.2.1.RELEASE")
+        set('springDependencyManagement', "1.0.8.RELEASE")
     }
 
     test {
