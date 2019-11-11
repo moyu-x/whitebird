@@ -38,7 +38,7 @@ public class DefaultExceptionAdvice {
      * 返回状态码： 400
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler({IllegalArgumentException.class})
+    @ExceptionHandler({IllegalArgumentException.class, BadRequestException.class})
     public ExceptionResponse badRequestException(IllegalArgumentException e) {
         return defHandler("参数解析错误", e, HttpStatus.BAD_REQUEST);
     }

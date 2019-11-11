@@ -16,6 +16,8 @@ import top.idwangmo.whitebird.accountservice.model.response.UserResponse;
 import top.idwangmo.whitebird.commoncore.exception.BusinessException;
 import top.idwangmo.whitebird.commoncore.exception.NotFoundException;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -47,7 +49,7 @@ public class UserService {
         return UserMapper.USER_MAPPER.toResponse(user);
     }
 
-    public PageImpl<UserResponse> retrieveUserList(Pageable pageable) {
+    public PageImpl<UserResponse> retrieveUserPage(Pageable pageable) {
         Page<User> userPage = userRepository.findAll(pageable);
 
         return new PageImpl<>(userPage.getContent().parallelStream().map(UserMapper.USER_MAPPER::toResponse).collect(
@@ -67,4 +69,10 @@ public class UserService {
         User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("未发现此用户"));
         userRepository.delete(user);
     }
+
+    public List<UserResponse> retrieveUserList(String username) {
+        return userRepository.findByUsername(username).parallelStream().filter(Objects::nonNull)
+                .map(UserMapper.USER_MAPPER::toResponse).collect(Collectors.toUnmodifiableList());
+    }
+
 }
