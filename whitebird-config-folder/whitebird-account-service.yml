@@ -1,18 +1,15 @@
 spring:
-  application:
-    name: whitebird-account-service
-
   datasource:
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:10000/whitebird_account_service
-  jpa:
-    generate-ddl: true
-    hibernate:
-      ddl-auto: update
-  flyway:
-    baseline-on-migrate: true
-    check-location: false
+    jpa:
+      generate-ddl: true
+      hibernate:
+        ddl-auto: update
+    flyway:
+      baseline-on-migrate: true
+      check-location: false
 server:
   port: 11013

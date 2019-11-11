@@ -8,5 +8,6 @@ spring:
           uri: ${HOME}/whitebird-project/whitebird
           search-paths: whitebird-config-folder
         bootstrap: true
+      allow-override: true
 server:
   port: 11012

@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: whitebird-account-service
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: whitebird-config-service
