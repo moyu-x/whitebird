@@ -10,7 +10,6 @@
 rootProject.name = 'whitebird'
 include 'whitebird-auth-service'
 include 'whitebird-demo-service'
-include 'whitebird-spring-boot-admin'
 include 'whitebird-gateway-service'
 include 'whitebird-account-service'
 include 'whitebird-commons:whitebird-core-spring-boot-starter'
