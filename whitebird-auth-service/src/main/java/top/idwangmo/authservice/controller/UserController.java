@@ -3,6 +3,7 @@ package top.idwangmo.authservice.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -22,12 +23,8 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping("current")
-    public Principal getUser(Principal principal) {
-        log.info(">>>>>>>>>>>>>>");
-        log.info(principal.toString());
-        log.info(">>>>>>>>>>>>>>");
-
-        return principal;
+    public ResponseEntity<?> resource(Principal principal) {
+        return ResponseEntity.ok(principal);
     }
 
     @PostMapping("registry")
