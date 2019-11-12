@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import top.idwangmo.authservice.client.model.response.UserResponse;
 
-import java.util.List;
-
 /**
  * whitebird user client.
  *
@@ -22,6 +20,6 @@ public interface WhitebirdUserClient {
      * @return 用户请求
      */
     @GetMapping
-    List<UserResponse> retrieveUsers(@RequestParam("username") String username);
+    UserResponse retrieveUsers(@RequestParam("username") String username);
 
 }

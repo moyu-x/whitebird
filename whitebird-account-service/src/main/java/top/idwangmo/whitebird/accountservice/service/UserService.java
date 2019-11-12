@@ -16,8 +16,7 @@ import top.idwangmo.whitebird.accountservice.model.response.UserResponse;
 import top.idwangmo.whitebird.commoncore.exception.BusinessException;
 import top.idwangmo.whitebird.commoncore.exception.NotFoundException;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -70,9 +69,10 @@ public class UserService {
         userRepository.delete(user);
     }
 
-    public List<UserResponse> retrieveUserList(String username) {
-        return userRepository.findByUsername(username).parallelStream().filter(Objects::nonNull)
-                .map(UserMapper.USER_MAPPER::toResponse).collect(Collectors.toUnmodifiableList());
+    public UserResponse retrieveUserList(String username) {
+        Optional<User> userOptional = userRepository.findByUsername(username).stream().findFirst();
+        return userOptional.map(UserMapper.USER_MAPPER::toResponse).orElse(null);
+
     }
 
 }

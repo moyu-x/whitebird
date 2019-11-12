@@ -2,6 +2,8 @@ package top.idwangmo.whitebird.accountservice.model;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * user model.
  *
@@ -12,6 +14,7 @@ public class UserModel {
 
     private String username;
 
+    @NotBlank(message = "密码不能为空")
     private String password;
 
     private String nickname;

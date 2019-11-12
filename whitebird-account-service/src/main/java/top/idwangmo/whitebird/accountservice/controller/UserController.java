@@ -10,7 +10,7 @@ import top.idwangmo.whitebird.accountservice.model.request.UserRequest;
 import top.idwangmo.whitebird.accountservice.model.response.UserResponse;
 import top.idwangmo.whitebird.accountservice.service.UserService;
 
-import java.util.List;
+import javax.validation.Valid;
 
 /**
  * user controller.
@@ -36,15 +36,15 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserResponse> retrieveUsers(@RequestParam("username") String username) {
-        if (StringUtils.isNotBlank(username)) {
+    public UserResponse retrieveUsers(@RequestParam("username") String username) {
+        if (StringUtils.isBlank(username)) {
             throw new IllegalArgumentException("用户名不能为空");
         }
         return userService.retrieveUserList(username);
     }
 
     @PostMapping
-    public Long createUser(@RequestBody UserRequest userRequest) {
+    public Long createUser(@Valid @RequestBody UserRequest userRequest) {
         return userService.createUser(userRequest);
     }
 
