@@ -10,4 +10,8 @@ feign:
   client:
     config:
       default:
-        loggerLevel: FULL
+        loggerLevel: full
+logging:
+  level:
+    top.idwangmo.authservice: debug
+    org.springframework.security: trace

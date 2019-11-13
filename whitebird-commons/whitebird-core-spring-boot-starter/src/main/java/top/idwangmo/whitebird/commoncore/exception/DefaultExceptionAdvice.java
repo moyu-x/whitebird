@@ -3,6 +3,7 @@ package top.idwangmo.whitebird.commoncore.exception;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -42,6 +43,12 @@ public class DefaultExceptionAdvice {
     @ExceptionHandler({IllegalArgumentException.class, BadRequestException.class, MethodArgumentNotValidException.class})
     public ExceptionResponse badRequestException(IllegalArgumentException e) {
         return defHandler("参数解析错误", e, HttpStatus.BAD_REQUEST);
+    }
+
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler({UsernameNotFoundException.class})
+    public ExceptionResponse unauthorized(UsernameNotFoundException e) {
+        return defHandler(e.getMessage(), e, HttpStatus.UNAUTHORIZED);
     }
 
     /**
