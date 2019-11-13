@@ -11,6 +11,7 @@ import top.idwangmo.whitebird.accountservice.model.response.UserResponse;
 import top.idwangmo.whitebird.accountservice.service.UserService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * user controller.
@@ -36,7 +37,7 @@ public class UserController {
     }
 
     @GetMapping
-    public UserResponse retrieveUsers(@RequestParam("username") String username) {
+    public List<UserResponse> retrieveUsers(@RequestParam("username") String username) {
         if (StringUtils.isBlank(username)) {
             throw new IllegalArgumentException("用户名不能为空");
         }

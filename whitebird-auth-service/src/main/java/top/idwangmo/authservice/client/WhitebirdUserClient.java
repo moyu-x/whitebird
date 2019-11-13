@@ -3,14 +3,16 @@ package top.idwangmo.authservice.client;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import top.idwangmo.authservice.client.model.response.UserResponse;
+import top.idwangmo.authservice.model.WhitebirdUserModel;
+
+import java.util.List;
 
 /**
  * whitebird user client.
  *
  * @author idwangmo
  */
-@FeignClient(name = "whitebird-account-service", decode404 = true)
+@FeignClient(name = "whitebird-account-service", path = "users", decode404 = true)
 public interface WhitebirdUserClient {
 
     /**
@@ -20,6 +22,6 @@ public interface WhitebirdUserClient {
      * @return 用户请求
      */
     @GetMapping
-    UserResponse retrieveUsers(@RequestParam("username") String username);
+    List<WhitebirdUserModel> retrieveUsers(@RequestParam("username") String username);
 
 }

@@ -1,11 +1,10 @@
 package top.idwangmo.authservice.model;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import top.idwangmo.authservice.client.model.UserModel;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -14,13 +13,31 @@ import java.util.Collection;
  * @author idwangmo
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class WhitebirdUserModel extends UserModel implements UserDetails {
+public class WhitebirdUserModel implements UserDetails {
 
-    private static final long serialVersionUID = 3290818438703528430L;
+    private static final long serialVersionUID = 4567698022993401366L;
+    private Long id;
+
+    private String username;
+
+    private String password;
+
+    private String nickname;
+
+    private String headImgUrl;
+
+    private String email;
+
+    private boolean accountNonExpired;
+
+    private boolean accountNonLocked;
+
+    private boolean credentialsNonExpired;
+
+    private boolean enabled;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return new ArrayList<>();
     }
 }

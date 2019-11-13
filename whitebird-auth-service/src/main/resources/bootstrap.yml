@@ -6,3 +6,8 @@ spring:
       discovery:
         service-id: whitebird-config-service
         enabled: true
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: FULL

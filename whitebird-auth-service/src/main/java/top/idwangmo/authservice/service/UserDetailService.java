@@ -6,7 +6,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import top.idwangmo.authservice.client.WhitebirdUserClient;
-import top.idwangmo.authservice.entity.repository.UserRepository;
 
 /**
  * oauth2 用户请求类.
@@ -19,18 +18,9 @@ public class UserDetailService implements UserDetailsService {
 
     private final WhitebirdUserClient whitebirdUserClient;
 
-    private final UserRepository userRepository;
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        UserResponse userResponse = Optional.of(whitebirdUserClient.retrieveUsers(username))
-//                .orElseThrow(() -> new UsernameNotFoundException("未发现此用户"));
-//
-//        WhitebirdUserModel whitebirdUserModel = new WhitebirdUserModel();
-//        BeanUtils.copyProperties(userResponse, whitebirdUserModel);
-//
-//        return whitebirdUserModel;
-
-        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("未发现此用户"));
+        return whitebirdUserClient.retrieveUsers(username).stream().findFirst()
+            .orElseThrow(() -> new UsernameNotFoundException("未发现此用户"));
     }
 }
