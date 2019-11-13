@@ -12,6 +12,3 @@ spring:
       check-location: false
 server:
   port: 11010
-logging:
-  level:
-    org.springframework.security: debug

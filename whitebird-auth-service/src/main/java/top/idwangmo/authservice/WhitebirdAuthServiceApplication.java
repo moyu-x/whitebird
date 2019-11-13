@@ -1,5 +1,6 @@
 package top.idwangmo.authservice;
 
+import feign.Logger;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.boot.SpringApplication;
@@ -34,5 +35,10 @@ public class WhitebirdAuthServiceApplication {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationConfig.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
         return objectMapper;
+    }
+
+    @Bean
+    public Logger.Level feignLoggerLevel() {
+        return Logger.Level.FULL;
     }
 }
