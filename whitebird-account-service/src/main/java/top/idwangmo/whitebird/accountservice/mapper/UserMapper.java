@@ -26,7 +26,8 @@ public interface UserMapper {
     /**
      * 转换为响应类。
      *
-     * @author idwangmo
+     * @param user 用户实体
+     * @return 用户响应
      */
     UserResponse toResponse(User user);
 }

@@ -1,7 +1,8 @@
 package top.idwangmo.authservice.service;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
@@ -21,10 +22,10 @@ import java.util.stream.Collectors;
  * @author idwangmo
  */
 @Service
+@RequiredArgsConstructor
 public class ClientDetailService implements ClientDetailsService {
 
-    @Autowired
-    private ClientRepository clientRepository;
+    private final @NonNull ClientRepository clientRepository;
 
     @Override
     public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {

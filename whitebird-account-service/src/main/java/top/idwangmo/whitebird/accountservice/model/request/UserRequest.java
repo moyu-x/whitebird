@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import top.idwangmo.whitebird.accountservice.model.UserModel;
 
+import java.util.Set;
+
 /**
  * User 的请求.
  *
@@ -12,5 +14,7 @@ import top.idwangmo.whitebird.accountservice.model.UserModel;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class UserRequest extends UserModel {
+
+    private Set<String> roleCodes;
 
 }

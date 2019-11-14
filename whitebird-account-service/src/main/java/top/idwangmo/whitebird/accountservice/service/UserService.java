@@ -1,5 +1,6 @@
 package top.idwangmo.whitebird.accountservice.service;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -9,6 +10,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import top.idwangmo.whitebird.accountservice.entity.User;
+import top.idwangmo.whitebird.accountservice.entity.repository.RoleRepository;
 import top.idwangmo.whitebird.accountservice.entity.repository.UserRepository;
 import top.idwangmo.whitebird.accountservice.mapper.UserMapper;
 import top.idwangmo.whitebird.accountservice.model.request.UserRequest;
@@ -28,7 +30,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final UserRepository userRepository;
+    private final @NonNull UserRepository userRepository;
+    private final @NonNull RoleRepository roleRepository;
 
     private PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
@@ -39,6 +42,8 @@ public class UserService {
 
         User user = UserMapper.USER_MAPPER.toEntity(userRequest);
         user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+        user.setAuthorities(roleRepository.findByCodeIn(userRequest.getRoleCodes()));
+
         return userRepository.save(user).getId();
     }
 
@@ -60,6 +65,7 @@ public class UserService {
 
         BeanUtils.copyProperties(userRequest, user);
         user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+        user.setAuthorities(roleRepository.findByCodeIn(userRequest.getRoleCodes()));
 
         return userRepository.save(user).getId();
     }

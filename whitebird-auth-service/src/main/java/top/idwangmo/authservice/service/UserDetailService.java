@@ -1,5 +1,6 @@
 package top.idwangmo.authservice.service;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,7 +17,7 @@ import top.idwangmo.authservice.client.WhitebirdUserClient;
 @RequiredArgsConstructor
 public class UserDetailService implements UserDetailsService {
 
-    private final WhitebirdUserClient whitebirdUserClient;
+    private final @NonNull WhitebirdUserClient whitebirdUserClient;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

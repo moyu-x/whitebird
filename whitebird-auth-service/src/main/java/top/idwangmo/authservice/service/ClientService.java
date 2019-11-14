@@ -1,7 +1,8 @@
 package top.idwangmo.authservice.service;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -26,12 +27,12 @@ import java.util.stream.Collectors;
  * @author idwangmo
  */
 @Service
+@RequiredArgsConstructor
 public class ClientService {
 
     private PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
-    @Autowired
-    private ClientRepository clientRepository;
+    private final @NonNull ClientRepository clientRepository;
 
     public Long crateClient(ClientRequest clientRequest) {
         if (clientRepository.existsByClientId(clientRequest.getClientId())) {
@@ -39,8 +40,7 @@ public class ClientService {
         }
 
         Client client = ClientMapper.CLIENT_MAPPER.toClient(clientRequest);
-        client.setClientSecret(passwordEncoder.encode(clientRequest.getClientSecret() ));
-
+        client.setClientSecret(passwordEncoder.encode(clientRequest.getClientSecret()));
         return clientRepository.save(client).getId();
     }
 

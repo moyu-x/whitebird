@@ -34,6 +34,4 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin().permitAll();
         // @formatter:on
     }
-
-
 }

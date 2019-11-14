@@ -4,8 +4,12 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import top.idwangmo.whitebird.jpaspringbootstarter.model.BaseEntity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Email;
+import java.util.Set;
 
 /**
  * 用户.
@@ -35,5 +39,8 @@ public class User extends BaseEntity {
     private boolean credentialsNonExpired = true;
 
     private boolean enabled = true;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Role> authorities;
 
 }
