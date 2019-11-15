@@ -6,3 +6,7 @@ spring:
       discovery:
         enabled: true
         service-id: whitebird-config-service
+
+  jpa:
+    hibernate:
+      ddl-auto: update

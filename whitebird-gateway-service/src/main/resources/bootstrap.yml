@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: whitebird-gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+    config:
+      discovery:
+        enabled: true
+        service-id: whitebird-config-service

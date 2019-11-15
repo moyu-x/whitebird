@@ -1,8 +1,13 @@
-package top.idwangmo.whitebird.whitebirdgatewayservice;
+package top.idwangmo.whitebird.gatewayservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * whitebird gateway service.
+ *
+ * @author idwangmo
+ */
 @SpringBootApplication
 public class WhitebirdGatewayServiceApplication {
 

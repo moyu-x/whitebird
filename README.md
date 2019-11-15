@@ -10,3 +10,4 @@
 | whitebird-demo-server       | 11011  |
 | whitebird-spring-boot-admin | 11012  |
 | whitebird-account-service   | 11013  |
+| whitebird-gateway-service   | 11014  |
