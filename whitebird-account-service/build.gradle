@@ -25,12 +25,11 @@ dependencies {
     // 第三方包
     implementation 'top.idwangmo.whitebird:whitebird-jpa-spring-boot-starter:0.0.1'
     implementation 'top.idwangmo.whitebird:whitebird-core-spring-boot-starter:0.0.1'
-    implementation 'org.mapstruct:mapstruct:1.3.1.Final'
-    annotationProcessor 'org.mapstruct:mapstruct-processor:1.3.1.Final'
-    implementation 'org.apache.commons:commons-collections4:4.4'
+    implementation "org.mapstruct:mapstruct:${mapstruct}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstruct}"
+    implementation "org.apache.commons:commons-collections4:${commonsCollections}"
 
-    implementation 'io.springfox:springfox-swagger2:2.9.2'
-    implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+
 
 }
 

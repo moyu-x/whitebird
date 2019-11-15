@@ -1,5 +1,6 @@
 package top.idwangmo.whitebird.accountservice.controller;
 
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.data.domain.PageImpl;
@@ -18,6 +19,7 @@ import java.util.List;
  *
  * @author idwangmo
  */
+@Api(tags = "用户管理")
 @RestController
 @RequestMapping("users")
 @RequiredArgsConstructor
@@ -61,6 +63,4 @@ public class UserController {
         userService.deleteUser(id);
     }
 
-
-    
 }
