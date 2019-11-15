@@ -3,6 +3,15 @@ spring:
     name: whitebird-gateway-service
   cloud:
     gateway:
+      routes:
+        - id: whitebid-auth-login
+          uri: lb://whitebird-auth-service
+          predicates:
+            - Path=/oauth/**
+        - id: whitebid-auth-oauth
+          uri: lb://whitebird-auth-service/login
+          predicates:
+            - Path=/login
       discovery:
         locator:
           enabled: true
