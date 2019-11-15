@@ -13,3 +13,10 @@ spring:
       check-location: false
 server:
   port: 11013
+whitebird:
+  swagger:
+    enabled: true
+    base-package: top.idwangmo
+    version: 1.0
+    title: whitebitd-account-service
+    license: MIT
