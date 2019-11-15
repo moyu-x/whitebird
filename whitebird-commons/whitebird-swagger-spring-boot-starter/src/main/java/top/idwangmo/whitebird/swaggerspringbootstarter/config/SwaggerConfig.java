@@ -5,6 +5,7 @@ import com.google.common.base.Predicates;
 import com.google.common.collect.Lists;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +33,7 @@ import java.util.stream.Collectors;
 @Configuration
 @EnableSwagger2
 @RequiredArgsConstructor
+@ConditionalOnProperty("whitebird.swagger.enabled")
 @EnableConfigurationProperties({WhitebirdSwaggerProperties.class})
 public class SwaggerConfig {
 

@@ -1,6 +1,8 @@
 package top.idwangmo.whitebird.accountservice.controller;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.data.domain.PageImpl;
@@ -27,36 +29,42 @@ public class UserController {
 
     private final UserService userService;
 
+    @ApiOperation("通过ID获取用户")
     @GetMapping("{id}")
     public UserResponse retrieveUser(@PathVariable("id") Long id) {
         return userService.retrieveUser(id);
     }
 
+    @ApiOperation("用户列表分页")
     @GetMapping("page")
     public PageImpl<UserResponse> retrieveUserPage(@RequestParam(value = "page", defaultValue = "0") Integer page,
                                                    @RequestParam(value = "size", defaultValue = "20") Integer size) {
         return userService.retrieveUserPage(PageRequest.of(page, size));
     }
 
+    @ApiOperation("用户列表")
     @GetMapping
-    public List<UserResponse> retrieveUsers(@RequestParam("username") String username) {
+    public List<UserResponse> retrieveUsers(@ApiParam("用户名称") @RequestParam("username") String username) {
         if (StringUtils.isBlank(username)) {
             throw new IllegalArgumentException("用户名不能为空");
         }
         return userService.retrieveUserList(username);
     }
 
+    @ApiOperation("创建用户")
     @PostMapping
     public Long createUser(@Valid @RequestBody UserRequest userRequest) {
         return userService.createUser(userRequest);
     }
 
+    @ApiOperation("修改用户")
     @PutMapping("{id}")
     public Long updateUser(@PathVariable("id")Long id,
                            @RequestBody UserRequest userRequest) {
         return userService.updateUser(id, userRequest);
     }
 
+    @ApiOperation("删除用户98")
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable("id") Long id) {
