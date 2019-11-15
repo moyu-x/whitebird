@@ -16,8 +16,8 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
 
-    implementation 'io.springfox:springfox-swagger2:2.9.2'
-    implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+    implementation "io.springfox:springfox-swagger2:${swagger2}"
+    implementation "io.springfox:springfox-swagger-ui:${swagger2}"
     implementation "com.google.guava:guava:${guava}"
     implementation "org.apache.commons:commons-collections4:${commonsCollections}"
     implementation "org.apache.commons:commons-lang3:${commonsLang}"

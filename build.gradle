@@ -22,6 +22,7 @@ allprojects {
         set('commonsCollections', "4.4")
         set('guava', "28.1-jre")
         set('commonsLang', "3.9")
+        set('swagger2', "2.9.2")
     }
 
     test {
