@@ -9,8 +9,8 @@ allprojects {
 
     repositories {
         mavenLocal()
-        mavenCentral()
         jcenter()
+        mavenCentral()
         maven { url 'https://repo.spring.io/milestone' }
     }
 
