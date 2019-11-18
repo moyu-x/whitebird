@@ -1,13 +1,3 @@
 server:
   port: 11011
-security:
-  oauth2:
-    resource:
-      user-info-uri: http://localhost:11010/users/current
-    client:
-      id: client_2
-      client-secret: 123456
-      access-token-uri: http://localhost:11010/oauth/token
-      grant-type: password
-      scope: server
-demo: demo
+
