@@ -4,5 +4,18 @@ spring:
   cloud:
     config:
       discovery:
-        enabled: true
         service-id: whitebird-config-service
+        enabled: true
+    loadbalancer:
+      ribbon:
+        enabled: false
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:11014/whitebird-auth-service/users/current
+    client:
+      id: client_1
+      client-secret: 123456
+      access-token-uri: http://localhost:11014/whitebird-auth-service/oauth/token
+      grant-type: authorization_code,client_credentials,refresh_token,password,implicit
+      scope: all

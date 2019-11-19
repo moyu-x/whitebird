@@ -25,3 +25,4 @@
 -   [ ] 限速
 -   [ ] 集成阿里 OSS 服务
 -   [ ] whitebird-account-service reactive 化
+-   [ ] account 和 auth 的查询进入缓存

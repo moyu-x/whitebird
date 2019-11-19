@@ -1,10 +1,10 @@
 package top.idwangmo.whitebird.demoservice.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
@@ -14,15 +14,12 @@ import java.security.Principal;
  *
  * @author idwangmo
  */
+@RequestMapping("demos")
 @RestController
 @Slf4j
 public class TestEndPointController {
 
-
-    @Value("${demo}")
-    private String demo;
-
-    @GetMapping("/getPrinciple")
+    @GetMapping("/current")
     public OAuth2Authentication getPrinciple(OAuth2Authentication oAuth2Authentication, Principal principal,
                                              Authentication authentication) {
         log.info(oAuth2Authentication.getUserAuthentication().getAuthorities().toString());
@@ -34,9 +31,4 @@ public class TestEndPointController {
         return oAuth2Authentication;
     }
 
-
-    @GetMapping("demo")
-    public String demo() {
-        return demo;
-    }
 }

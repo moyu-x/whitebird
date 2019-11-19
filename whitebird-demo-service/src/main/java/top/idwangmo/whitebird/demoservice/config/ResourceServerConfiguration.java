@@ -18,11 +18,12 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests()
-//                .antMatchers("demo").permitAll()
-//                .requestMatchers(EndpointRequest.to("health", "flyway")).permitAll()
-//                .anyRequest().authenticated();
-        http.authorizeRequests().anyRequest().permitAll();
+        http.csrf().disable()
+            .requestMatchers()
+            .antMatchers("/**")
+            .and()
+            .authorizeRequests()
+            .antMatchers("/demos/**").authenticated();
     }
 
 }
