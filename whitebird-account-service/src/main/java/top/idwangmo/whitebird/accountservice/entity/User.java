@@ -41,6 +41,6 @@ public class User extends BaseEntity {
     private boolean enabled = true;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Role> authorities;
+    private Set<Role> roles;
 
 }

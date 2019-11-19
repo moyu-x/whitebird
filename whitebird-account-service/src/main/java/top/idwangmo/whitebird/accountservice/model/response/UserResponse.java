@@ -22,6 +22,6 @@ public class UserResponse extends UserModel {
     private Long id;
 
     @ApiModelProperty("用户权限")
-    private Set<RoleResponse> authorities;
+    private Set<RoleResponse> roles;;
 
 }

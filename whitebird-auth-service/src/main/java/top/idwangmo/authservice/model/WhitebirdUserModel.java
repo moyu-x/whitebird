@@ -2,10 +2,12 @@ package top.idwangmo.authservice.model;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * whitebird user model.
@@ -15,7 +17,8 @@ import java.util.Collection;
 @Data
 public class WhitebirdUserModel implements UserDetails {
 
-    private static final long serialVersionUID = 4567698022993401366L;
+    private static final long serialVersionUID = 8724385594205269934L;
+
     private Long id;
 
     private String username;
@@ -36,8 +39,11 @@ public class WhitebirdUserModel implements UserDetails {
 
     private boolean enabled;
 
+    private Set<WhitebirdRoleModel> roles;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return new ArrayList<>();
+        return this.getRoles().parallelStream().map(WhitebirdRoleModel::getCode).map(SimpleGrantedAuthority::new).collect(
+            Collectors.toList());
     }
 }

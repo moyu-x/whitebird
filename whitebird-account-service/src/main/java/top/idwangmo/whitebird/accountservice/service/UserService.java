@@ -42,7 +42,7 @@ public class UserService {
 
         User user = UserMapper.USER_MAPPER.toEntity(userRequest);
         user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
-        user.setAuthorities(roleRepository.findByCodeIn(userRequest.getRoleCodes()));
+        user.setRoles(roleRepository.findByCodeIn(userRequest.getRoleCodes()));
 
         return userRepository.save(user).getId();
     }
@@ -65,7 +65,7 @@ public class UserService {
 
         BeanUtils.copyProperties(userRequest, user);
         user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
-        user.setAuthorities(roleRepository.findByCodeIn(userRequest.getRoleCodes()));
+        user.setRoles(roleRepository.findByCodeIn(userRequest.getRoleCodes()));
 
         return userRepository.save(user).getId();
     }

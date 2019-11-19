@@ -55,19 +55,22 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         // 保存在 redis 中
         endpoints.tokenStore(tokenStore())
-                .authenticationManager(authenticationManager)
-                .userDetailsService(userDetailService)
-                .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
+            .authenticationManager(authenticationManager)
+            .userDetailsService(userDetailService)
+            .tokenServices(tokenServices())
+            .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
+    }
 
-        // 配置 token service 的参数
+
+    @Bean
+    public DefaultTokenServices tokenServices() {
         DefaultTokenServices tokenServices = new DefaultTokenServices();
-        tokenServices.setTokenStore(endpoints.getTokenStore());
+        tokenServices.setTokenStore(tokenStore());
         tokenServices.setSupportRefreshToken(true);
-        tokenServices.setTokenEnhancer(endpoints.getTokenEnhancer());
 
         // 设置 access_token 的有效时间是 2 小时，默认是 12 小时
         tokenServices.setAccessTokenValiditySeconds(Math.toIntExact(TimeUnit.HOURS.toSeconds(2)));
-        endpoints.tokenServices(tokenServices);
+        return tokenServices;
     }
 
     @Override

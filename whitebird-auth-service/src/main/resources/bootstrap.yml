@@ -6,12 +6,13 @@ spring:
       discovery:
         service-id: whitebird-config-service
         enabled: true
-#feign:
-#  client:
-#    config:
-#      default:
-#        loggerLevel: full
-#logging:
-#  level:
-#    top.idwangmo.authservice: debug
-#    org.springframework.security: trace
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: full
+logging:
+  level:
+    top.idwangmo.authservice: debug
+#    org.springframework.security: debug
+

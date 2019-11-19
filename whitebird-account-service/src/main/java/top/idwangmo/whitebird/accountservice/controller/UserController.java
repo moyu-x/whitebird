@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +22,7 @@ import java.util.List;
  *
  * @author idwangmo
  */
+@Slf4j
 @Api(tags = "用户管理")
 @RestController
 @RequestMapping("users")
@@ -45,6 +47,9 @@ public class UserController {
     @ApiOperation("用户列表")
     @GetMapping
     public List<UserResponse> retrieveUsers(@ApiParam("用户名称") @RequestParam("username") String username) {
+
+        log.info("user info: " + username);
+
         if (StringUtils.isBlank(username)) {
             throw new IllegalArgumentException("用户名不能为空");
         }
@@ -64,7 +69,7 @@ public class UserController {
         return userService.updateUser(id, userRequest);
     }
 
-    @ApiOperation("删除用户98")
+    @ApiOperation("删除用户")
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable("id") Long id) {
