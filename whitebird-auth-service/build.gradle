@@ -27,9 +27,9 @@ dependencies {
     }
 
     // 第三方包
-    implementation 'top.idwangmo.whitebird:whitebird-jpa-spring-boot-starter:0.0.1'
-    implementation 'top.idwangmo.whitebird:whitebird-core-spring-boot-starter:0.0.1'
-    implementation 'top.idwangmo.whitebird:whitebird-swagger-spring-boot-starter:0.0.1'
+    implementation project(':whitebird-commons').project('whitebird-jpa-spring-boot-starter')
+    implementation project(':whitebird-commons').project('whitebird-core-spring-boot-starter')
+    implementation project(':whitebird-commons').project('whitebird-swagger-spring-boot-starter')
 
     implementation "org.mapstruct:mapstruct:${mapstruct}"
     annotationProcessor "org.mapstruct:mapstruct-processor:${mapstruct}"

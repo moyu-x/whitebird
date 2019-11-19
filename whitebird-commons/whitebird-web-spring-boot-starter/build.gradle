@@ -16,13 +16,10 @@ dependencies {
     }
 
     // whitebird 包
-    implementation 'top.idwangmo.whitebird:whitebird-core-spring-boot-starter:0.0.1'
-
+    implementation project(':whitebird-commons').project('whitebird-core-spring-boot-starter')
     // 第三方包
-    compileOnly 'javax.servlet:javax.servlet-api'
     implementation 'cn.hutool:hutool-all:5.0.3'
     implementation 'io.github.openfeign:feign-okhttp'
-    implementation 'com.google.code.gson:gson'
 }
 
 dependencyManagement {
