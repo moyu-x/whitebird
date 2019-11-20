@@ -1,9 +1,12 @@
 package top.idwangmo.whitebird.commoncore.resolver;
 
+
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.core.MethodParameter;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.support.WebArgumentResolver;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -12,21 +15,18 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import top.idwangmo.whitebird.commoncore.annotation.CurrentUser;
 import top.idwangmo.whitebird.commoncore.model.WhitebirdUser;
 
-import java.security.Principal;
+import java.util.Objects;
 
 /**
- * Token 转换.
+ * Token 的转换器.
  *
  * @author idwangmo
  */
 @Slf4j
-public class TokenArgumentResolver implements HandlerMethodArgumentResolver {
-
-
-
+public class TokenResolver implements HandlerMethodArgumentResolver {
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.hasParameterAnnotation(CurrentUser.class) && parameter.getParameterType().equals(WhitebirdUser.class);
+        return parameter.getParameterAnnotation(CurrentUser.class) != null;
     }
 
     @Override
@@ -34,19 +34,15 @@ public class TokenArgumentResolver implements HandlerMethodArgumentResolver {
                                   ModelAndViewContainer mavContainer,
                                   NativeWebRequest webRequest,
                                   WebDataBinderFactory binderFactory) throws Exception {
-
-        if (this.supportsParameter(parameter)) {
-            Principal userPrincipal = webRequest.getUserPrincipal();
-            if (userPrincipal != null) {
-                Object principal = ((Authentication) webRequest.getUserPrincipal()).getPrincipal();
-                WhitebirdUser whitebirdUser = new WhitebirdUser();
-                BeanUtils.copyProperties(principal, whitebirdUser);
-                log.info(whitebirdUser.toString());
-                return  whitebirdUser;
-            }
+        Gson gson = new Gson();
+        OAuth2Authentication userPrincipal = (OAuth2Authentication) webRequest.getUserPrincipal();
+        if (Objects.nonNull(userPrincipal)) {
+            Object details = userPrincipal.getUserAuthentication().getDetails();
+            JSONObject jsonObject = JSONUtil.parseObj(details);
+            JSONObject principal = (JSONObject) jsonObject.get("principal");
+            return gson.fromJson(principal.toString(), WhitebirdUser.class);
         }
+
         return WebArgumentResolver.UNRESOLVED;
     }
-
-
 }

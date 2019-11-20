@@ -1,21 +1,21 @@
 package top.idwangmo.whitebird.commoncore.config;
 
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-import top.idwangmo.whitebird.commoncore.resolver.TokenArgumentResolver;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import top.idwangmo.whitebird.commoncore.resolver.TokenResolver;
 
 import java.util.List;
 
 /**
- * 默认的网页请求配置.
+ * 默认的 web 配置.
  *
  * @author idwangmo
  */
-public class DefaultWebMvcConfig extends WebMvcConfigurationSupport {
+public class DefaultWebMvcConfig implements WebMvcConfigurer {
 
     @Override
-    protected void addArgumentResolvers(
-        List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(new TokenArgumentResolver());
+    public void addArgumentResolvers(
+        List<HandlerMethodArgumentResolver> resolvers) {
+        resolvers.add(new TokenResolver());
     }
 }

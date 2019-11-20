@@ -23,6 +23,8 @@ dependencies {
     }
     testImplementation 'io.projectreactor:reactor-test'
 
+
+    implementation project(':whitebird-commons').project('whitebird-core-spring-boot-starter')
 }
 
 dependencyManagement {
