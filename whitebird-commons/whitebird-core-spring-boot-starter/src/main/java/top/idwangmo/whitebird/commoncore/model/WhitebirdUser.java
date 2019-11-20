@@ -2,8 +2,8 @@ package top.idwangmo.whitebird.commoncore.model;
 
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Whitebird user model.
@@ -17,16 +17,20 @@ public class WhitebirdUser {
 
     private String username;
 
-    private String password;
-
     private String nickname;
 
-    private String mobile;
+    private String headImgUrl;
 
-    private String type;
+    private String email;
 
-    private boolean deleted;
+    private boolean accountNonExpired;
 
-    private List<WhitebirdRole> roles = new ArrayList<>();
+    private boolean accountNonLocked;
+
+    private boolean credentialsNonExpired;
+
+    private boolean enabled;
+
+    private Set<WhitebirdRole> roles = new HashSet<>();
 
 }
