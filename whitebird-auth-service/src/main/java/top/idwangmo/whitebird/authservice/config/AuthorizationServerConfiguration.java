@@ -61,7 +61,11 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
             .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
     }
 
-
+    /**
+     * 默认的 TokenService 配置.
+     *
+     * @return DefaultTokenService
+     */
     @Bean
     public DefaultTokenServices tokenServices() {
         DefaultTokenServices tokenServices = new DefaultTokenServices();

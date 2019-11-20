@@ -1,5 +1,7 @@
 package top.idwangmo.whitebird.authservice.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,8 +11,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import top.idwangmo.whitebird.commoncore.annotation.CurrentUser;
 import top.idwangmo.whitebird.commoncore.constant.SecurityConstants;
 import top.idwangmo.whitebird.commoncore.exception.BusinessException;
+import top.idwangmo.whitebird.commoncore.model.WhitebirdUser;
 
 /**
  * Token controller.
@@ -18,6 +22,7 @@ import top.idwangmo.whitebird.commoncore.exception.BusinessException;
  * @author idwangmo
  */
 @Slf4j
+@Api("令牌接口")
 @RestController
 @RequestMapping("token")
 @RequiredArgsConstructor
@@ -25,8 +30,10 @@ public class TokenController {
 
     private final @NonNull DefaultTokenServices tokenServices;
 
+    @ApiOperation("撤销令牌")
     @DeleteMapping("revoke")
-    public void revokeToken(@RequestHeader("Authorization") String authorizationHeader) {
+    public void revokeToken(@RequestHeader("Authorization") String authorizationHeader,
+                            @CurrentUser WhitebirdUser whitebirdUser) {
         if (!StringUtils.containsIgnoreCase(authorizationHeader, SecurityConstants.BEARER)) {
             throw new BusinessException("This is not bearer token");
         }
@@ -36,6 +43,8 @@ public class TokenController {
         if (StringUtils.isBlank(token)) {
             throw new BusinessException("Authorization header is error");
         }
+
+        log.info("User id: {}, name: {} is revoke", whitebirdUser.getId(), whitebirdUser.getUsername());
 
         tokenServices.revokeToken(token);
     }

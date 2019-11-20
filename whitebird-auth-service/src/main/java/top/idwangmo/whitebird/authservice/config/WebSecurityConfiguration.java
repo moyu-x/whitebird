@@ -16,6 +16,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    /**
+     * 在 Spring boot 2 或者 Spring Security 5 中一定要设置.
+     *
+     * @return Authentication
+     * @throws Exception exception
+     */
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {

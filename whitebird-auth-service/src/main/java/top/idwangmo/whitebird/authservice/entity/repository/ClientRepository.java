@@ -12,8 +12,20 @@ import java.util.Optional;
  */
 public interface ClientRepository extends PagingAndSortingRepository<Client, Long> {
 
+    /**
+     * 应用是否存在.
+     *
+     * @param clientId clientId
+     * @return boolean
+     */
     boolean existsByClientId(String clientId);
 
+    /**
+     * 通过应用ID查询应用.
+     *
+     * @param clientId clientId
+     * @return Optional<Client>
+     */
     Optional<Client> findByClientId(String clientId);
 
 }

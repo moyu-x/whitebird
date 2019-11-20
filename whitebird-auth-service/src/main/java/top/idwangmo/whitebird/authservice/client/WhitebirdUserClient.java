@@ -4,6 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import top.idwangmo.whitebird.authservice.model.WhitebirdUserModel;
+import top.idwangmo.whitebird.commoncore.constant.WhitebirdConstants;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author idwangmo
  */
-@FeignClient(name = "whitebird-account-service", path = "users", decode404 = true)
+@FeignClient(name = WhitebirdConstants.ACCOUNT_SERVICE, path = "users", decode404 = true)
 public interface WhitebirdUserClient {
 
     /**

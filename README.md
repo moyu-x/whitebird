@@ -17,7 +17,7 @@
 -   [ ] Rsocket
 -   [ ] Spring Cloud Stream 集成
 -   [ ] EventSourcing 集成实例
--   [ ] Auth Token 转化
+-   [X] Auth Token 转化
 -   [ ] Flowable 集成
 -   [ ] 分布式调度
 -   [ ] 自定义手机号码登录和扫码登录
