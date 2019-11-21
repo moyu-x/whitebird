@@ -11,6 +11,15 @@ spring:
       discovery:
         locator:
           enabled: true
+
+      default-filters:
+        # 使用 spring cloud gateway 默认实现的限流
+        - name: RequestRateLimiter
+          args:
+            key-resolver: '#{@whitebirdRateLimiter}'
+            redis-rate-limiter:
+              replenishRate: 10
+              burstCapacity: 2
     config:
       discovery:
         enabled: true
