@@ -24,4 +24,9 @@ public class TestEndPointController {
         return ResponseEntity.ok(whitebirdUser);
     }
 
+    @GetMapping("demo")
+    public String demo() {
+        return "demo";
+    }
+
 }
