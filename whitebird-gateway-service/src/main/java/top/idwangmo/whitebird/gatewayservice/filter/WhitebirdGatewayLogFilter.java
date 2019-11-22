@@ -25,9 +25,7 @@ public class WhitebirdGatewayLogFilter implements GlobalFilter {
     public Mono<Void> filter(ServerWebExchange exchange,
                              GatewayFilterChain chain) {
         return chain.filter(exchange).then(
-            Mono.fromRunnable(() -> {
-                requestInfoLog(exchange);
-            })
+            Mono.fromRunnable(() -> requestInfoLog(exchange))
         );
     }
 

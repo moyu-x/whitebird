@@ -12,17 +12,23 @@
 | whitebird-account-service   | 11013  |
 | whitebird-gateway-service   | 11014  |
 
-## 还要继续编写的功能
+## 还要实现的功能
 
 -   [ ] Rsocket
 -   [ ] Spring Cloud Stream 集成
 -   [ ] EventSourcing 集成实例
--   [X] Auth Token 转化
+-   [x] Auth Token 转化
 -   [ ] Flowable 集成
 -   [ ] 分布式调度
 -   [ ] 自定义手机号码登录和扫码登录
 -   [ ] 基于 Redis 的分布式锁的实现
--   [ ] 限速
+-   [x] 限速
 -   [ ] 集成阿里 OSS 服务
 -   [ ] whitebird-account-service reactive 化
 -   [ ] account 和 auth 的查询进入缓存
+-   [ ] Spring Cloud Gateway 动态路由
+-   [ ] Docker 集成
+
+## 一些技术选型时候的参考文章
+
+1. [How to Live in a PostSpringCloutdNetflix World](https://www.slideshare.net/SpringCentral/how-to-live-in-a-postspringcloudnetflix-world)

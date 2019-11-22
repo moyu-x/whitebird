@@ -7,3 +7,11 @@ spring:
     check-location: false
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'prometheus,health'
+  metrics:
+    tags:
+      application: ${spring.application.name}

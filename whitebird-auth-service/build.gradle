@@ -36,6 +36,8 @@ dependencies {
     implementation "org.apache.commons:commons-collections4:${commonsCollections}"
     implementation "io.springfox:springfox-swagger2:${swagger2}"
     implementation "io.springfox:springfox-swagger-ui:${swagger2}"
+    implementation('io.micrometer:micrometer-registry-prometheus')
+
 }
 
 dependencyManagement {
