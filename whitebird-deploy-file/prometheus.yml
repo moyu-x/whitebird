@@ -11,3 +11,12 @@ scrape_configs:
         scheme: http
         services:
           - node_exporter
+    relabel_configs:
+      - source_labels:  ["__meta_consul_dc"]
+        regex: "(.*)"
+        replacement: $1
+        action: replace
+        target_label: "dc"
+      - source_labels: ["__meta_consul_tags"]
+        regex: ".*,development,.*"
+        action: keep

@@ -24,6 +24,7 @@ allprojects {
         set('commonsLang', "3.9")
         set('swagger2', "2.9.2")
         set('resilience4jVersion', "1.1.0")
+        set('jlib', "1.8.0")
     }
 
     test {

@@ -6,11 +6,3 @@ spring:
 
 server:
   port: 11010
-
-whitebird:
-  swagger:
-    enabled: true
-    base-package: top.idwangmo
-    version: 1.0
-    title: whitebitd-auth-service
-    license: MIT

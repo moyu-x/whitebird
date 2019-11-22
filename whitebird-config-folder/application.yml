@@ -15,3 +15,10 @@ management:
   metrics:
     tags:
       application: ${spring.application.name}
+whitebird:
+  swagger:
+    enabled: true
+    base-package: top.idwangmo
+    version: 1.0
+    title: ${spring.application.name}
+    license: MIT
