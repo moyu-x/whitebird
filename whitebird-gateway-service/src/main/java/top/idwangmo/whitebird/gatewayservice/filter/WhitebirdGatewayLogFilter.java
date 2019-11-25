@@ -5,6 +5,7 @@ import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.gateway.route.Route;
 import org.springframework.cloud.gateway.support.ServerWebExchangeUtils;
+import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
@@ -20,6 +21,7 @@ import java.util.Optional;
  * @author idwangmo
  */
 @Slf4j
+@Component
 public class WhitebirdGatewayLogFilter implements GlobalFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange,

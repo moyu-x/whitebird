@@ -9,4 +9,8 @@ public interface EndpointConstant {
 
     String ALL = "/**";
 
+    /**
+     * token的URL
+     */
+    String OAUTH_TOKEN_URL = "/oauth/token";
 }

@@ -8,6 +8,7 @@ plugins {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.cloud:spring-cloud-config-client'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive'
     implementation 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
     implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
@@ -20,6 +21,9 @@ dependencies {
     testImplementation 'io.projectreactor:reactor-test'
 
     implementation('io.micrometer:micrometer-registry-prometheus')
+    implementation("cn.hutool:hutool-all:${hutool}")
+//    implementation project(':whitebird-commons').project('whitebird-core-spring-boot-starter')
+
 }
 
 dependencyManagement {
