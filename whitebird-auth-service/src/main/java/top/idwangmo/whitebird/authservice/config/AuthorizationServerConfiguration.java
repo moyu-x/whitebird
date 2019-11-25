@@ -20,6 +20,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 import top.idwangmo.whitebird.authservice.service.ClientDetailService;
 import top.idwangmo.whitebird.authservice.service.UserDetailService;
+import top.idwangmo.whitebird.commoncore.constant.SecurityConstants;
 
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -45,6 +46,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
         // 这里解决了每次生成的 token 一致的问题，但是会导致重新生成token的时候上次的token不会被撤销
         redisTokenStore.setAuthenticationKeyGenerator(oAuth2Authentication -> UUID.randomUUID().toString());
+
+        // 设置前缀
+        redisTokenStore.setPrefix(SecurityConstants.PROJECT_PREFIX + SecurityConstants.OAUTH_PREFIX);
         return redisTokenStore;
     }
 

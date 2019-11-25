@@ -5,13 +5,8 @@ package top.idwangmo.whitebird.commoncore.constant;
  *
  * @author idwangmo
  */
-public class EndpointConstant {
+public interface EndpointConstant {
 
-    private EndpointConstant() {
-
-    }
-
-    public static final String ALL = "/**";
-
+    String ALL = "/**";
 
 }

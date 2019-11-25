@@ -5,30 +5,40 @@ package top.idwangmo.whitebird.commoncore.constant;
  *
  * @author idwangmo
  */
-public class SecurityConstants {
+public interface SecurityConstants {
 
     /**
      * bearer
      */
-    public static final String BEARER = "bearer";
+    String BEARER = "bearer";
 
     /**
      * 用户id的头信息.
      */
-    public static final String USER_ID_HEADER = "x-user-id-header";
+    String USER_ID_HEADER = "x-user-id-header";
 
     /**
      * 用户信息头.
      */
-    public static final String USER_HEADER = "x-user-header";
+    String USER_HEADER = "x-user-header";
 
     /**
      * 用户角色头.
      */
-    public static final String ROLE_HEADER = "x-role-header";
+    String ROLE_HEADER = "x-role-header";
 
     /**
      * token请求头名称
      */
-    public static final String TOKEN_HEADER = "Authorization";
+    String TOKEN_HEADER = "Authorization";
+
+    /**
+     * 项目名称前缀
+     */
+    String PROJECT_PREFIX = "whitebird_";
+
+    /**
+     * oauth2 前缀
+     */
+    String OAUTH_PREFIX = "oauth:";
 }

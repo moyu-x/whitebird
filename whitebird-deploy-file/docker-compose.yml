@@ -7,12 +7,10 @@ services:
       - 8500:8500
   redis:
     image: redis:latest
-    container_name: redis
     ports:
       - 6379:6379
   mysql:
     image: mysql:8
-    container_name: mysql
     ports:
       - 10000:3306
     environment:
@@ -21,26 +19,26 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - ~/data/mysql:/var/lib/mysql
-  prometheus:
-    image: prom/prometheus
-    container_name: promethues
-    ports:
-      - 9091:9090
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-  node_exporter:
-    image: quay.io/prometheus/node-exporter
-    pid: "host"
-    ports:
-      - 9100:9100
-    labels:
-      SERVICE_TAGS: "development"
-      SERVICE_NAME: "node_exporter"
-      SERVICE_TAG_IO_PROMETHEUS_SCRAPED: "true"
-  registrator:
-    image: gliderlabs/registrator
-    depends_on:
-      - consul
-    volumes:
-      - /var/run:/tmp:rw
-    command: consul://consul:8500
+#  prometheus:
+#    image: prom/prometheus
+#    container_name: promethues
+#    ports:
+#      - 9091:9090
+#    volumes:
+#      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+#  node_exporter:
+#    image: quay.io/prometheus/node-exporter
+#    pid: "host"
+#    ports:
+#      - 9100:9100
+#    labels:
+#      SERVICE_TAGS: "development"
+#      SERVICE_NAME: "node_exporter"
+#      SERVICE_TAG_IO_PROMETHEUS_SCRAPED: "true"
+#  registrator:
+#    image: gliderlabs/registrator
+#    depends_on:
+#      - consul
+#    volumes:
+#      - /var/run:/tmp:rw
+#    command: consul://consul:8500

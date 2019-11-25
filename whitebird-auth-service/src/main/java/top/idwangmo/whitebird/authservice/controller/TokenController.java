@@ -46,6 +46,7 @@ public class TokenController {
 
         log.info("User id: {}, name: {} is revoke", whitebirdUser.getId(), whitebirdUser.getUsername());
 
+        // 这个方法已经包含删除 accessToken 和 refreshToken 的方法实现
         tokenServices.revokeToken(token);
     }
 }
