@@ -7,6 +7,12 @@ spring:
     check-location: false
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: none
 management:
   endpoints:
     web:

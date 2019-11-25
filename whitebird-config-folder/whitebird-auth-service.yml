@@ -1,8 +1,5 @@
 spring:
   datasource:
     url: jdbc:mysql://localhost:10000/whitebird_auth_service
-    username: root
-    password: root
-
 server:
   port: 11010
