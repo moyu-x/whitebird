@@ -24,3 +24,8 @@ spring:
       discovery:
         enabled: true
         service-id: whitebird-config-service
+
+whitebird:
+  password:
+    encode:
+      key: 1234567890123456
