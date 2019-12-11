@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: whitebird-spring-boot-service
+  boot:
+    admin:
+      discovery:
+        # 忽略服务注册信息
+        ignored-services: consul
+
+server:
+  port: 11012
