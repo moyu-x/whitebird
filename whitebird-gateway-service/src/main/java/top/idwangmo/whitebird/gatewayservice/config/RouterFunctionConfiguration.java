@@ -26,7 +26,7 @@ public class RouterFunctionConfiguration {
     @Bean
     public RouterFunction routerFunction() {
         return RouterFunctions
-            .route(RequestPredicates.GET("/swaggre-resources").and(RequestPredicates.accept(MediaType.ALL)),
+            .route(RequestPredicates.GET("/swagger-resources").and(RequestPredicates.accept(MediaType.ALL)),
                 swaggerResourceHandler);
     }
 

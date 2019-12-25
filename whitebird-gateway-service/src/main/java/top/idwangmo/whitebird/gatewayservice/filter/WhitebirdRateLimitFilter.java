@@ -15,7 +15,7 @@ import java.util.Objects;
 @Component(WhitebirdRateLimitFilter.BEAN_NAME)
 public class WhitebirdRateLimitFilter implements KeyResolver {
 
-    public static final String BEAN_NAME = "whitebirdRateLimiter";
+    public static final String BEAN_NAME = "WhitebirdRateLimiter";
 
     @Override
     public Mono<String> resolve(ServerWebExchange exchange) {

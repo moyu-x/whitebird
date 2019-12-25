@@ -16,7 +16,7 @@ spring:
         # 使用 spring cloud gateway 默认实现的限流
         - name: RequestRateLimiter
           args:
-            key-resolver: '#{@whitebirdRateLimiter}'
+            key-resolver: '#{@WhitebirdRateLimiter}'
             redis-rate-limiter:
               replenishRate: 10
               burstCapacity: 2
