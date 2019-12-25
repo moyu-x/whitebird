@@ -1,6 +1,6 @@
 spring:
   application:
-    name: whitebird-spring-boot-service
+    name: whitebird-spring-boot-admin-service
   boot:
     admin:
       discovery:

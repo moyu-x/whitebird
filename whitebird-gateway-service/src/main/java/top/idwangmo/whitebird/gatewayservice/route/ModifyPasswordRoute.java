@@ -46,12 +46,10 @@ public class ModifyPasswordRoute {
                     String password = bodyMap.get(PASSWORD);
 
                     if (StringUtils.isNotBlank(password)) {
-
                         password = decode(password);
                         bodyMap.put(PASSWORD, password.trim());
                     }
 
-                    log.info(HttpUtil.toParams(bodyMap));
                     return Mono.just(HttpUtil.toParams(bodyMap));
                 }))).uri("lb://whitebird-auth-service")).build();
     }

@@ -13,10 +13,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableAdminServer
 @EnableDiscoveryClient
 @SpringBootApplication
-public class WhitebirdSpringBootAdminApplication {
+public class WhitebirdSpringBootAdminServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(WhitebirdSpringBootAdminApplication.class, args);
+        SpringApplication.run(WhitebirdSpringBootAdminServiceApplication.class, args);
     }
 
 }
