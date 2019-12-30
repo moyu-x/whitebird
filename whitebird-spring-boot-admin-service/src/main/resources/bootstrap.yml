@@ -6,6 +6,11 @@ spring:
       discovery:
         # 忽略服务注册信息
         ignored-services: consul
-
+  cloud:
+    consul:
+      host: ${CONSUL_HOST}
+      discovery:
+        heartbeat:
+          enabled: true
 server:
-  port: 11012
+  port: 11013

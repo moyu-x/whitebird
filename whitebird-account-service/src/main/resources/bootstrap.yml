@@ -6,6 +6,11 @@ spring:
       discovery:
         enabled: true
         service-id: whitebird-config-service
+    consul:
+      host: ${CONSUL_HOST}
+      discovery:
+        heartbeat:
+          enabled: true
 
   jpa:
     hibernate:
