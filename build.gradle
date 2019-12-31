@@ -26,6 +26,7 @@ allprojects {
         set('resilience4jVersion', "1.1.0")
         set('jlib', "1.8.0")
         set('hutool', "5.0.3")
+        set('springBootAdminVersion', "2.2.0")
     }
 
     test {
