@@ -5,9 +5,14 @@ spring:
     config:
       server:
         git:
-          uri: ${HOME}/whitebird-project/whitebird
+          uri: ${CONFIG_FOLDER}
           search-paths: whitebird-config-folder
         bootstrap: true
       allow-override: true
+    consul:
+      host: ${CONSUL_HOST}
+      discovery:
+        heartbeat:
+          enabled: true
 server:
   port: 11012

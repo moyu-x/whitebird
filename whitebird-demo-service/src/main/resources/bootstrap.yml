@@ -6,9 +6,12 @@ spring:
       discovery:
         service-id: whitebird-config-service
         enabled: true
-    loadbalancer:
-      ribbon:
-        enabled: false
+    consul:
+      host: ${CONSUL_HOST}
+      discovery:
+        heartbeat:
+          enabled: true
+
 security:
   oauth2:
     resource:
