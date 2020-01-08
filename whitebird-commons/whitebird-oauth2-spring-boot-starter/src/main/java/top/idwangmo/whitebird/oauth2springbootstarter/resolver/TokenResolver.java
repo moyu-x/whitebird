@@ -1,4 +1,4 @@
-package top.idwangmo.whitebird.commoncore.resolver;
+package top.idwangmo.whitebird.oauth2springbootstarter.resolver;
 
 
 import cn.hutool.json.JSONObject;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
-import top.idwangmo.whitebird.commoncore.annotation.CurrentUser;
+import top.idwangmo.whitebird.oauth2springbootstarter.annotation.CurrentUser;
 import top.idwangmo.whitebird.commoncore.model.WhitebirdUser;
 
 import java.util.Objects;
@@ -26,7 +26,7 @@ import java.util.Objects;
 public class TokenResolver implements HandlerMethodArgumentResolver {
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.getParameterAnnotation(CurrentUser.class) != null;
+        return Objects.nonNull(parameter.getParameterAnnotation(CurrentUser.class));
     }
 
     @Override

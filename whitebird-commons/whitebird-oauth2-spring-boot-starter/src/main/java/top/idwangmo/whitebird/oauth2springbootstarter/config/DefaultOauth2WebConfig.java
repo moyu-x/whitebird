@@ -1,8 +1,8 @@
-package top.idwangmo.whitebird.commoncore.config;
+package top.idwangmo.whitebird.oauth2springbootstarter.config;
 
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import top.idwangmo.whitebird.commoncore.resolver.TokenResolver;
+import top.idwangmo.whitebird.oauth2springbootstarter.resolver.TokenResolver;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author idwangmo
  */
-public class DefaultWebMvcConfig implements WebMvcConfigurer {
+public class DefaultOauth2WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addArgumentResolvers(

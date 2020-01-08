@@ -2,8 +2,6 @@ package top.idwangmo.whitebird.commoncore.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -31,7 +29,7 @@ public class DefaultExceptionAdvice {
      * @param httpStatus 状态码
      * @return ExceptionBody
      */
-    private static ExceptionResponse defHandler(String msg, Exception e, HttpStatus httpStatus) {
+    public static ExceptionResponse defHandler(String msg, Exception e, HttpStatus httpStatus) {
         log.error(msg, e);
         return ExceptionResponse.builder().message(msg).code(httpStatus.value()).description(e.getMessage()).build();
     }
@@ -45,20 +43,7 @@ public class DefaultExceptionAdvice {
         return defHandler("参数解析错误", e, HttpStatus.BAD_REQUEST);
     }
 
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    @ExceptionHandler({UsernameNotFoundException.class})
-    public ExceptionResponse unauthorized(UsernameNotFoundException e) {
-        return defHandler(e.getMessage(), e, HttpStatus.UNAUTHORIZED);
-    }
 
-    /**
-     * 返回状态码: 403
-     */
-    @ResponseStatus(HttpStatus.FORBIDDEN)
-    @ExceptionHandler({AccessDeniedException.class})
-    public ExceptionResponse accessDeniedException(AccessDeniedException e) {
-        return defHandler("没有权限访问本系统", e, HttpStatus.FORBIDDEN);
-    }
 
     /**
      * 返回状态码: 404

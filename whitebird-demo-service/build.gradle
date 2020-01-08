@@ -24,6 +24,7 @@ dependencies {
     }
     testImplementation 'io.projectreactor:reactor-test'
 
+    implementation project(':whitebird-commons').project('whitebird-oauth2-spring-boot-starter')
     implementation project(':whitebird-commons').project('whitebird-core-spring-boot-starter')
     implementation('io.micrometer:micrometer-registry-prometheus')
 }

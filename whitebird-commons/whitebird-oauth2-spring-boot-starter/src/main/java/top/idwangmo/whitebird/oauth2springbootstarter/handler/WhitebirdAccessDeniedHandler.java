@@ -1,4 +1,4 @@
-package top.idwangmo.whitebird.commoncore.handler;
+package top.idwangmo.whitebird.oauth2springbootstarter.handler;
 
 import com.google.gson.Gson;
 import org.springframework.http.HttpStatus;

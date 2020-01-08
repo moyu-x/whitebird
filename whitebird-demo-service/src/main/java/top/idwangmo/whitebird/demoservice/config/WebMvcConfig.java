@@ -1,7 +1,7 @@
 package top.idwangmo.whitebird.demoservice.config;
 
 import org.springframework.context.annotation.Configuration;
-import top.idwangmo.whitebird.commoncore.config.DefaultWebMvcConfig;
+import top.idwangmo.whitebird.oauth2springbootstarter.config.DefaultOauth2WebConfig;
 
 /**
  * WebMvc 配置
@@ -9,5 +9,5 @@ import top.idwangmo.whitebird.commoncore.config.DefaultWebMvcConfig;
  * @author idwangmo
  */
 @Configuration
-public class WebMvcConfig extends DefaultWebMvcConfig {
+public class WebMvcConfig extends DefaultOauth2WebConfig {
 }

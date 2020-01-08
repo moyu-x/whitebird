@@ -28,8 +28,9 @@ dependencies {
     implementation project(':whitebird-commons').project('whitebird-core-spring-boot-starter')
     implementation project(':whitebird-commons').project('whitebird-swagger-spring-boot-starter')
 
-    implementation "org.mapstruct:mapstruct:${mapstruct}"
-    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstruct}"
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+
     implementation "org.apache.commons:commons-collections4:${commonsCollections}"
     implementation "io.springfox:springfox-swagger2:${swagger2}"
     implementation "io.springfox:springfox-swagger-ui:${swagger2}"

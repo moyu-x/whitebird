@@ -40,7 +40,7 @@ public class UserService {
             throw new BusinessException("用户名称重复");
         }
 
-        User user = UserMapper.USER_MAPPER.toEntity(userRequest);
+        User user = UserMapper.INSTANCE.toEntity(userRequest);
         user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
         user.setRoles(roleRepository.findByCodeIn(userRequest.getRoleCodes()));
 
@@ -50,13 +50,13 @@ public class UserService {
     public UserResponse retrieveUser(Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new NotFoundException("未发现此用户"));
 
-        return UserMapper.USER_MAPPER.toResponse(user);
+        return UserMapper.INSTANCE.toResponse(user);
     }
 
     public PageImpl<UserResponse> retrieveUserPage(Pageable pageable) {
         Page<User> userPage = userRepository.findAll(pageable);
 
-        return new PageImpl<>(userPage.getContent().parallelStream().map(UserMapper.USER_MAPPER::toResponse).collect(
+        return new PageImpl<>(userPage.getContent().parallelStream().map(UserMapper.INSTANCE::toResponse).collect(
                 Collectors.toList()), pageable, userPage.getTotalElements());
     }
 
@@ -76,7 +76,7 @@ public class UserService {
     }
 
     public List<UserResponse> retrieveUserList(String username) {
-        return userRepository.findByUsername(username).parallelStream().map(UserMapper.USER_MAPPER::toResponse)
+        return userRepository.findByUsername(username).parallelStream().map(UserMapper.INSTANCE::toResponse)
             .collect(Collectors.toList());
 
     }

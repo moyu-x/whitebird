@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import top.idwangmo.whitebird.commoncore.annotation.CurrentUser;
 import top.idwangmo.whitebird.commoncore.constant.SecurityConstants;
 import top.idwangmo.whitebird.commoncore.exception.BusinessException;
 import top.idwangmo.whitebird.commoncore.model.WhitebirdUser;
+import top.idwangmo.whitebird.oauth2springbootstarter.annotation.CurrentUser;
 
 /**
  * Token controller.
