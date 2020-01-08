@@ -1,4 +1,4 @@
-package top.idwangmo.whitebird.commoncore.annotation;
+package top.idwangmo.whitebird.oauth2springbootstarter.annotation;
 
 import java.lang.annotation.*;
 

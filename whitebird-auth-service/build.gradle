@@ -31,6 +31,7 @@ dependencies {
     implementation project(':whitebird-commons').project('whitebird-jpa-spring-boot-starter')
     implementation project(':whitebird-commons').project('whitebird-core-spring-boot-starter')
     implementation project(':whitebird-commons').project('whitebird-swagger-spring-boot-starter')
+    implementation project(':whitebird-commons').project('whitebird-oauth2-spring-boot-starter')
 
     implementation "org.mapstruct:mapstruct:${mapstruct}"
     annotationProcessor "org.mapstruct:mapstruct-processor:${mapstruct}"

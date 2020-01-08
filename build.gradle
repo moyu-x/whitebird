@@ -25,8 +25,10 @@ allprojects {
         set('swagger2', "2.9.2")
         set('resilience4jVersion', "1.1.0")
         set('jlib', "1.8.0")
-        set('hutool', "5.0.3")
+        set('hutool', "5.1.0")
         set('springBootAdminVersion', "2.2.0")
+        set('gson', "2.8.6")
+        set('javaxServlet', "4.0.1")
     }
 
     test {
