@@ -4,13 +4,14 @@
 
 ## 端口
 
-| 服务名称                    | 端口号 |
-| --------------------------- | ------ |
-| whitebird-auth-server       | 11010  |
-| whitebird-demo-server       | 11011  |
-| whitebird-spring-boot-admin | 11012  |
-| whitebird-account-service   | 11013  |
-| whitebird-gateway-service   | 11014  |
+| 服务名称                            | 端口号 |
+| ----------------------------------- | ------ |
+| whitebird-auth-service              | 11010  |
+| whitebird-demo-service              | 11011  |
+| whitebird-config-service            | 11012  |
+| whitebird-account-service           | 11013  |
+| whitebird-gateway-service           | 11014  |
+| whitebird-spring-boot-admin-service | 10015  |
 
 ## 项目结构
 
