@@ -13,7 +13,8 @@ import top.idwangmo.whitebird.accountservice.model.response.UserResponse;
  */
 @Mapper
 public interface UserMapper {
-    UserMapper USER_MAPPER = Mappers.getMapper(UserMapper.class);
+
+    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
     /**
      * 转换为实体类.
