@@ -1,4 +1,4 @@
-package top.idwangmo.whitebird.whitebirdredisspringbootstarer.config;
+package top.idwangmo.whitebird.redisspringbootstarer.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -20,7 +20,7 @@ import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-import top.idwangmo.whitebird.whitebirdredisspringbootstarer.props.CacheManagerProperties;
+import top.idwangmo.whitebird.redisspringbootstarer.props.CacheManagerProperties;
 
 import java.time.Duration;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package top.idwangmo.whitebird.whitebirdredisspringbootstarer.props;
+package top.idwangmo.whitebird.redisspringbootstarer.props;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
