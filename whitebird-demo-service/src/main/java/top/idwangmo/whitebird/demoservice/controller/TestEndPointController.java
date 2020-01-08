@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import top.idwangmo.whitebird.commoncore.annotation.CurrentUser;
+import top.idwangmo.whitebird.oauth2springbootstarter.annotation.CurrentUser;
 import top.idwangmo.whitebird.commoncore.model.WhitebirdUser;
 
 /**

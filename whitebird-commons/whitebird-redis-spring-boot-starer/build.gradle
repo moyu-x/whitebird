@@ -6,7 +6,6 @@ plugins {
     id 'maven-publish'
 }
 
-
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     compileOnly 'org.projectlombok:lombok'
