@@ -18,7 +18,7 @@ dependencies {
     // whitebird 包
     implementation project(':whitebird-commons').project('whitebird-core-spring-boot-starter')
     // 第三方包
-    implementation 'cn.hutool:hutool-all:5.0.3'
+    implementation "cn.hutool:hutool-all:${hutool}"
     implementation 'io.github.openfeign:feign-okhttp'
 }
 
