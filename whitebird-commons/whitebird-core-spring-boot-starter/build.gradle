@@ -9,7 +9,7 @@ plugins {
 description = 'whitebird-common-core-starter'
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
@@ -21,6 +21,8 @@ dependencies {
     implementation "cn.hutool:hutool-all:${hutool}"
     implementation "com.google.code.gson:gson:${gson}"
     implementation "io.github.resilience4j:resilience4j-ratelimiter:${resilience4jVersion}"
+    implementation "javax.servlet:javax.servlet-api:${javaxServlet}"
+
 }
 
 dependencyManagement {
