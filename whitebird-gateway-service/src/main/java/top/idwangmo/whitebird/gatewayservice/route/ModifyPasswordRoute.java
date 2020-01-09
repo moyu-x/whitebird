@@ -8,12 +8,14 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import reactor.core.publisher.Mono;
+import top.idwangmo.whitebird.commoncore.exception.BadRequestException;
 import top.idwangmo.whitebird.gatewayservice.props.WhitebirdSecurityProperties;
 
 import java.util.Map;
@@ -26,6 +28,7 @@ import java.util.Map;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
+@ConditionalOnProperty("whitebird.gateway.password.encode.enabled")
 @EnableConfigurationProperties({WhitebirdSecurityProperties.class})
 public class ModifyPasswordRoute {
 
@@ -57,7 +60,11 @@ public class ModifyPasswordRoute {
     private String decode(String rawPassword) {
         SymmetricCrypto aes = new SymmetricCrypto(SymmetricAlgorithm.AES,
             whitebirdSecurityProperties.getKey().getBytes());
-        return aes.decryptStr(rawPassword, CharsetUtil.CHARSET_UTF_8);
+        try {
+            return aes.decryptStr(rawPassword, CharsetUtil.CHARSET_UTF_8);
+        } catch (Exception e) {
+            throw new BadRequestException("测试下异常");
+        }
     }
 
 }

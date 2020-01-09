@@ -20,10 +20,10 @@ dependencies {
     }
     testImplementation 'io.projectreactor:reactor-test'
 
+    implementation project(':whitebird-commons').project('whitebird-core-spring-boot-starter')
+
     implementation('io.micrometer:micrometer-registry-prometheus')
     implementation("cn.hutool:hutool-all:${hutool}")
-//    implementation project(':whitebird-commons').project('whitebird-core-spring-boot-starter')
-    implementation "io.springfox:springfox-swagger2:${swagger2}"
 
 }
 

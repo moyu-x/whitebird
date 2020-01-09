@@ -2,30 +2,12 @@ spring:
   application:
     name: whitebird-gateway-service
   cloud:
-    gateway:
-      routes:
-        - id: whitebid-auth-login
-          uri: lb://whitebird-auth-service
-          predicates:
-            - Path=/oauth/**, /login
-      discovery:
-        locator:
-          enabled: true
-
-      default-filters:
-        # 使用 spring cloud gateway 默认实现的限流
-        - name: RequestRateLimiter
-          args:
-            key-resolver: '#{@WhitebirdRateLimiter}'
-            redis-rate-limiter:
-              replenishRate: 10
-              burstCapacity: 2
     config:
       discovery:
         enabled: true
         service-id: whitebird-config-service
-
-whitebird:
-  password:
-    encode:
-      key: 1234567890123456
+    consul:
+      host: ${CONSUL_HOST}
+      discovery:
+        heartbeat:
+          enabled: true
