@@ -1,6 +1,7 @@
 package top.idwangmo.whitebird.gatewayservice.route;
 
 import cn.hutool.core.util.CharsetUtil;
+import cn.hutool.crypto.CryptoException;
 import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
 import cn.hutool.crypto.symmetric.SymmetricCrypto;
 import cn.hutool.http.HttpUtil;
@@ -62,8 +63,9 @@ public class ModifyPasswordRoute {
             whitebirdSecurityProperties.getKey().getBytes());
         try {
             return aes.decryptStr(rawPassword, CharsetUtil.CHARSET_UTF_8);
-        } catch (Exception e) {
-            throw new BadRequestException("测试下异常");
+        } catch (CryptoException e) {
+            log.error("登录时解码异常", e);
+            throw new BadRequestException(e.getMessage());
         }
     }
 
