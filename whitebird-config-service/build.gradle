@@ -1,6 +1,7 @@
 plugins {
     id 'org.springframework.boot' version "${springBootVersion}"
     id 'io.spring.dependency-management' version "${springDependencyManagement}"
+    id 'com.google.cloud.tools.jib' version "${jlib}"
     id 'java'
 }
 
@@ -23,3 +24,6 @@ dependencyManagement {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
 }
+
+jib.from.image = "azul/zulu-openjdk-alpine:11"
+jib.to.image = "whitebird-config-service"
