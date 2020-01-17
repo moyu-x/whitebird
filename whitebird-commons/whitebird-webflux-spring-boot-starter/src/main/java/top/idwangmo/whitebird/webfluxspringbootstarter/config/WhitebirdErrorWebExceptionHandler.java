@@ -1,4 +1,4 @@
-package top.idwangmo.whitebird.gatewayservice.config;
+package top.idwangmo.whitebird.webfluxspringbootstarter.config;
 
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
 import org.springframework.boot.autoconfigure.web.ResourceProperties;

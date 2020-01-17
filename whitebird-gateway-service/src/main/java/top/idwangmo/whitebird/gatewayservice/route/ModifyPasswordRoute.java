@@ -24,6 +24,8 @@ import java.util.Map;
 /**
  * 修改登录请求中的 password.
  *
+ * 这只是对修改请求内容的一个实践，一般情况下，对于密码，在启用HTTPS后，安全性上面就已经有了很大的提高了，不用再使用其他方式进行处理。
+ *
  * @author idwangmo
  */
 @Slf4j

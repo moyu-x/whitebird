@@ -1,4 +1,4 @@
-package top.idwangmo.whitebird.gatewayservice.config;
+package top.idwangmo.whitebird.webfluxspringbootstarter.config;
 
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
