@@ -1,6 +1,7 @@
 package top.idwangmo.whitebird.gatewayservice.filter;
 
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
@@ -12,6 +13,7 @@ import java.util.Objects;
  *
  * @author idwangmo
  */
+@Primary
 @Component(WhitebirdRateLimitFilter.BEAN_NAME)
 public class WhitebirdRateLimitFilter implements KeyResolver {
 

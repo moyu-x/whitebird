@@ -12,6 +12,9 @@ spring:
         heartbeat:
           enabled: true
 
+---
+spring:
+  profiles: custom-setting
   jpa:
     hibernate:
       ddl-auto: update

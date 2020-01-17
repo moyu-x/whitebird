@@ -2,6 +2,7 @@ package top.idwangmo.whitebird.accountservice.service;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -75,10 +76,15 @@ public class UserService {
         userRepository.delete(user);
     }
 
-    public List<UserResponse> retrieveUserList(String username) {
-        return userRepository.findByUsername(username).parallelStream().map(UserMapper.INSTANCE::toResponse)
-            .collect(Collectors.toList());
+    public UserResponse retrieveUserByOauth2(String username) {
+        List<User> users = userRepository.findByUsername(username);
 
+        // 在业务上应该保证，在同一种类型下的用户名应该是唯一的，但是不应该只通过数据库保证唯一性
+        if (CollectionUtils.isNotEmpty(users)) {
+            return UserMapper.INSTANCE.toResponse(users.get(0));
+        }
+
+        return null;
     }
 
 }

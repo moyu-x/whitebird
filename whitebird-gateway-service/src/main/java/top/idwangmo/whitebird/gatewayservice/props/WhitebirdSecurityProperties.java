@@ -9,8 +9,13 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author idwangmo
  */
 @Data
-@ConfigurationProperties("whitebird.password.encode")
+@ConfigurationProperties("whitebird.gateway.password.encode")
 public class WhitebirdSecurityProperties {
+
+    /**
+     * 是否启用
+     */
+    private boolean enabled = false;
 
     /**
      * 前端请求中password加密的密钥
