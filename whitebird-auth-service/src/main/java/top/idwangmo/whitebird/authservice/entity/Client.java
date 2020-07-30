@@ -1,23 +1,21 @@
 package top.idwangmo.whitebird.authservice.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import org.hibernate.procedure.spi.CallableStatementSupport;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import top.idwangmo.whitebird.jpaspringbootstarter.model.BaseEntity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  * Client 的配置.
  *
  * @author idwangmo
  */
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
-@EqualsAndHashCode(callSuper = true)
 public class Client extends BaseEntity {
 
     private String clientId;

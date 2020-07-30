@@ -1,6 +1,7 @@
 package top.idwangmo.whitebird.accountservice.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import top.idwangmo.whitebird.accountservice.entity.User;
 import top.idwangmo.whitebird.accountservice.model.request.UserRequest;
@@ -22,6 +23,10 @@ public interface UserMapper {
      * @param userRequest 用户请求
      * @return 实体类.
      */
+    @Mapping(target = "id",ignore = true)
+    @Mapping(target = "createdDate", ignore = true)
+    @Mapping(target = "lastModifiedDate", ignore = true)
+    @Mapping(target = "roles", ignore = true)
     User toEntity(UserRequest userRequest);
 
     /**

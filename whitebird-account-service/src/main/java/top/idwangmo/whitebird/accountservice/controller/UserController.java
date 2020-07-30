@@ -23,7 +23,7 @@ import javax.validation.Valid;
  * @author idwangmo
  */
 @Slf4j
-@Api(tags = "用户管理")
+@Api(value = "UserController",tags = "用户管理")
 @RestController
 @RequestMapping("users")
 @RequiredArgsConstructor

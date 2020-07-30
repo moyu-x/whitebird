@@ -30,6 +30,7 @@ allprojects {
         set('springBootAdminVersion', "2.2.0")
         set('gson', "2.8.6")
         set('javaxServlet', "4.0.1")
+        set('findbug', "3.0.1")
     }
 
     test {
