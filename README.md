@@ -37,20 +37,7 @@
 
 ## 还要实现的功能
 
-- [ ] Rsocket
-- [ ] Spring Cloud Stream 集成
-- [ ] EventSourcing 集成实例
-- [x] Auth Token 转化
-- [ ] Flowable 集成
-- [ ] 分布式调度
-- [ ] 自定义手机号码登录和扫码登录
-- [ ] 基于 Redis 的分布式锁的实现
-- [x] 限速
-- [ ] 集成阿里 OSS 服务
-- [ ] whitebird-account-service reactive 化
-- [ ] account 和 auth 的查询进入缓存
-- [ ] Spring Cloud Gateway 动态路由
-- [x] Docker 集成
+这个参考Projects的[看板](https://github.com/idwangmo/whitebird/projects/1)
 
 ## 技术选型
 
@@ -61,3 +48,11 @@
 ### 参考文章
 
 1. [How to Live in a PostSpringCloutdNetflix World](https://www.slideshare.net/SpringCentral/how-to-live-in-a-postspringcloudnetflix-world)
+
+#### Snowflake 算法文章推荐
+
+1. [理解分布式 id 生成算法 SnowFlake](https://segmentfault.com/a/1190000011282426)
+2. [Leaf——美团点评分布式ID生成系统](https://tech.meituan.com/2017/04/21/mt-leaf.html)
+3. [分布式唯一 id：snowflake 算法思考](https://juejin.im/post/5a7f9176f265da4e721c73a8)
+4. [如何做一个靠谱的发号器](https://tech.youzan.com/id_gener)
+5. [分布式唯一 ID 生成器](https://www.liaoxuefeng.com/article/1280526512029729)
