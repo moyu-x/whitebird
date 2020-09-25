@@ -20,7 +20,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.concurrent.TimeUnit;
 
 /**
- * .
+ * whitebird resttemplate 的配置，使用okhhtp进行增加配置.
  *
  * @author idwangmo
  */
