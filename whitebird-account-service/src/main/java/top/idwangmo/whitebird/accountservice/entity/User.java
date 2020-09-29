@@ -1,7 +1,8 @@
 package top.idwangmo.whitebird.accountservice.entity;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import top.idwangmo.whitebird.jpaspringbootstarter.model.BaseEntity;
 
 import javax.persistence.CascadeType;
@@ -17,7 +18,8 @@ import java.util.Set;
  * @author idwangmo
  */
 @Entity
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(callSuper = true)
 public class User extends BaseEntity {
 

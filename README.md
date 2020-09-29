@@ -39,11 +39,23 @@
 
 这个参考Projects的[看板](https://github.com/idwangmo/whitebird/projects/1)
 
-## 技术选型
+## 技术
 
 ### Jib
 
 在之前的的`Maven`中，我们会使用`docker-maven-plugin`插件，而在`Gradle`中，则会使用官方的`docker`插件，这样都避免不了要写`DockerFile`的问题，而使用`Jib`再保留的集成功能的情况下，而不用编写`Dockerfile`则是一种很好的体验，并且其编写配置也比较人性化
+
+### Lombok
+
+Lombok 能解决代码一部分模板代码的问题，但是也会带来一些不可控的问题，所以我在这个项目中的只使用如下的一些注解:
+
+```
+@Getter
+@setter
+@slf4j
+@NoArgsConstructor
+@AllArgsConstructor
+```
 
 ### 参考文章
 

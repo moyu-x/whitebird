@@ -5,8 +5,7 @@ spring:
     config:
       server:
         git:
-          uri: ${CONFIG_FOLDER}
-          search-paths: whitebird-config-folder
+          uri: ${CONFIG_URI}
         bootstrap: true
       allow-override: true
     consul:

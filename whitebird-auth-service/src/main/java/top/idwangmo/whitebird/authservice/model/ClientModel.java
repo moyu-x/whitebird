@@ -1,13 +1,17 @@
 package top.idwangmo.whitebird.authservice.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * 应用的 DTO 么
  *
  * @author idwangmo
  */
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class ClientModel {
 
     private String clientId;
@@ -20,9 +24,9 @@ public class ClientModel {
 
     private String authorities;
 
-    private Integer accessTokenValidity;
+    private Integer accessTokenValiditySeconds;
 
-    private Integer refreshTokenValidity;
+    private Integer refreshTokenValiditySeconds;
 
     private String webServerRedirectUri;
 

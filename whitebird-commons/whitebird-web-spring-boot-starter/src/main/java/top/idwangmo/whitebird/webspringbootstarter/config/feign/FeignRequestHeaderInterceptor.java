@@ -4,6 +4,7 @@ import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import top.idwangmo.whitebird.webspringbootstarter.config.WebConstant;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
@@ -25,6 +26,12 @@ public class FeignRequestHeaderInterceptor implements RequestInterceptor {
             while (headerNames.hasMoreElements()) {
                 String name = headerNames.nextElement();
                 String values = request.getHeader(name);
+
+                // 要跳过content-length，不然会再某些版本上提示不能超过2048
+                if (WebConstant.CONTENT_LENGTH.equals(name)) {
+                    continue;
+                }
+
                 template.header(name, values);
             }
         }

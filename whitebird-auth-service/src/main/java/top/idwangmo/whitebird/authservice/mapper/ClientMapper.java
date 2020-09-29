@@ -1,6 +1,7 @@
 package top.idwangmo.whitebird.authservice.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import top.idwangmo.whitebird.authservice.entity.Client;
 import top.idwangmo.whitebird.authservice.model.request.ClientRequest;
@@ -29,6 +30,10 @@ public interface ClientMapper {
      * @param clientRequest 请求
      * @return 实体类
      */
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createdDate", ignore = true)
+    @Mapping(target = "lastModifiedDate", ignore = true)
+    @Mapping(target = "autoApprove", ignore = true)
     Client toClient(ClientRequest clientRequest);
 
 }

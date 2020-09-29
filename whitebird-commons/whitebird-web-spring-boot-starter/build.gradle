@@ -22,6 +22,7 @@ dependencies {
     // 第三方包
     implementation "cn.hutool:hutool-all:${hutool}"
     implementation 'io.github.openfeign:feign-okhttp'
+    compileOnly "com.google.code.findbugs:annotations:${findbug}"
 }
 
 dependencyManagement {
