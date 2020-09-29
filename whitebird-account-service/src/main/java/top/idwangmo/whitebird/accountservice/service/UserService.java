@@ -34,7 +34,7 @@ public class UserService {
     private final @NonNull UserRepository userRepository;
     private final @NonNull RoleRepository roleRepository;
 
-    private PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    private final PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
     public Long createUser(UserRequest userRequest) {
         if (userRepository.existsByUsername(userRequest.getUsername())) {
