@@ -3,6 +3,7 @@ package top.idwangmo.whitebird.webfluxspringbootstarter.config;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
 import org.springframework.boot.autoconfigure.web.ResourceProperties;
 import org.springframework.boot.autoconfigure.web.reactive.error.DefaultErrorWebExceptionHandler;
+import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.reactive.error.ErrorAttributes;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.reactive.function.server.*;
@@ -41,7 +42,7 @@ public class WhitebirdErrorWebExceptionHandler extends DefaultErrorWebExceptionH
     }
 
     @Override
-    protected Map<String, Object> getErrorAttributes(ServerRequest request, boolean includeStackTrace) {
+    protected Map<String, Object> getErrorAttributes(ServerRequest request, ErrorAttributeOptions options) {
         Throwable error = super.getError(request);
         Map<String, Object> errorAttributes = new HashMap<>(8);
         Optional<Integer> statusOptional = Optional.ofNullable(statusMap.get(error.getClass().getSimpleName()));

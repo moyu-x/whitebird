@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.web.ResourceProperties;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.autoconfigure.web.reactive.WebFluxAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.web.reactive.error.DefaultErrorAttributes;
 import org.springframework.boot.web.reactive.error.ErrorAttributes;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
 import org.springframework.context.ApplicationContext;
@@ -69,11 +68,5 @@ public class WhitebirdErrorWebFluxAutoConfiguration {
         exceptionHandler.setMessageWriters(this.serverCodecConfigurer.getWriters());
         exceptionHandler.setMessageReaders(this.serverCodecConfigurer.getReaders());
         return exceptionHandler;
-    }
-
-    @Bean
-    @ConditionalOnMissingBean(value = ErrorWebExceptionHandler.class, search = SearchStrategy.CURRENT)
-    public DefaultErrorAttributes errorAttributes() {
-        return new DefaultErrorAttributes(this.serverProperties.getError().isIncludeException());
     }
 }

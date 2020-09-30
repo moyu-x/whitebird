@@ -36,7 +36,7 @@ public class FeignFallback<T> implements MethodInterceptor {
                 method.getName(), targetName, errorMessage);
 
         // 不是 feign 的错误 或者当请求中的数据为空时候
-        if (!(cause instanceof FeignException) || ArrayUtil.isEmpty(((FeignException) cause).content())) {
+        if (!(cause instanceof FeignException) || ArrayUtil.isEmpty(((FeignException) cause).responseBody())) {
             return new ExceptionResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Feign 请求发生错误", errorMessage);
         }
 
