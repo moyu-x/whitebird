@@ -1,0 +1,10 @@
+spring:
+  jpa:
+    show-sql: true
+
+
+logging:
+  level:
+#    org.springframework.data.elasticsearch.client.WIRE : trace
+    org.elasticsearch.client: trace
+    org.apache.http: TRACE

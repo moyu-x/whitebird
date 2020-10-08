@@ -35,11 +35,11 @@
 └── whitebird-spring-boot-admin-service
 ```
 
-## 还要实现的功能
+## 功能计划
 
 这个参考Projects的[看板](https://github.com/idwangmo/whitebird/projects/1)
 
-## 技术
+## 技术TIPs
 
 ### Jib
 
@@ -49,7 +49,7 @@
 
 Lombok 能解决代码一部分模板代码的问题，但是也会带来一些不可控的问题，所以我在这个项目中的只使用如下的一些注解:
 
-```
+```java
 @Getter
 @setter
 @slf4j
@@ -57,11 +57,17 @@ Lombok 能解决代码一部分模板代码的问题，但是也会带来一些�
 @AllArgsConstructor
 ```
 
-### 参考文章
+### Gradle
+
+如果需要在IDE中直接运行项目，需要设置Gradle的运行环境也是基于11的版本，不然回导致提示工具链报错的问题
+
+## 参考
+
+### 视频
 
 1. [How to Live in a PostSpringCloutdNetflix World](https://www.slideshare.net/SpringCentral/how-to-live-in-a-postspringcloudnetflix-world)
 
-#### Snowflake 算法文章推荐
+### Snowflake 算法文章推荐
 
 1. [理解分布式 id 生成算法 SnowFlake](https://segmentfault.com/a/1190000011282426)
 2. [Leaf——美团点评分布式ID生成系统](https://tech.meituan.com/2017/04/21/mt-leaf.html)
