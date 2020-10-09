@@ -2,6 +2,8 @@ package top.idwangmo.whitebird.elasticsearchdemo;
 
 import org.elasticsearch.action.get.GetRequest;
 import org.elasticsearch.action.get.GetResponse;
+import org.elasticsearch.action.search.MultiSearchRequest;
+import org.elasticsearch.action.search.MultiSearchResponse;
 import org.elasticsearch.action.search.SearchType;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
@@ -10,21 +12,20 @@ import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
-import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
-import org.springframework.data.elasticsearch.core.SearchHit;
-import org.springframework.data.elasticsearch.core.SearchHits;
+import org.springframework.data.elasticsearch.core.*;
 import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.data.elasticsearch.core.query.IndexQuery;
 import org.springframework.data.elasticsearch.core.query.IndexQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import top.idwangmo.whitebird.elasticsearchdemo.config.ElasticsearchConstant;
+import top.idwangmo.whitebird.elasticsearchdemo.config.ElasticsearchTools;
 import top.idwangmo.whitebird.elasticsearchdemo.entity.UserEsEntity;
 import top.idwangmo.whitebird.elasticsearchdemo.repository.UserEsRepository;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 
@@ -49,6 +50,29 @@ class WhitebirdElasticsearchDemoApplicationTests {
 		GetResponse getResponse = highLevelClient.get(getRequest, RequestOptions.DEFAULT);
 		System.out.println(getResponse.getIndex());
 		System.out.println(getResponse.toString());
+	}
+
+	@Test
+	void testMSearch() throws IOException {
+		BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
+		MatchQueryBuilder matchQueryBuilder = QueryBuilders.matchQuery(ElasticsearchConstant.LAST_NAME_FIELD, "2");
+		RangeQueryBuilder ageRange = QueryBuilders.rangeQuery(ElasticsearchConstant.AGE).from(1).to(20);
+		queryBuilder.must(matchQueryBuilder).must(ageRange);
+
+		BoolQueryBuilder queryBuilder2 = QueryBuilders.boolQuery();
+		MatchQueryBuilder matchQueryBuilder2 = QueryBuilders.matchQuery(ElasticsearchConstant.USER_TYPE_FIELD, "2");
+		RangeQueryBuilder ageRange2 = QueryBuilders.rangeQuery(ElasticsearchConstant.AGE).from(1).to(20);
+		queryBuilder2.must(matchQueryBuilder2).must(ageRange2);
+
+		MultiSearchRequest request = ElasticsearchTools.getRequest(ElasticsearchConstant.USER_INDEX, List.of(queryBuilder, queryBuilder2));
+		MultiSearchResponse msearch = highLevelClient.msearch(request, RequestOptions.DEFAULT);
+	}
+
+	@Test
+	void testGetIndexInfo() {
+		IndexOperations indexOperations = elasticsearchOperations.indexOps(UserEsEntity.class);
+		Map<String, Object> settings = indexOperations.getSettings();
+		settings.keySet().forEach(System.out::println);
 	}
 
 	@Test
@@ -163,6 +187,5 @@ class WhitebirdElasticsearchDemoApplicationTests {
 		SearchHits<UserEsEntity> search = elasticsearchRestTemplate.search(searchQuery, UserEsEntity.class, IndexCoordinates.of("user_index"));
 
 		search.forEach(System.out::println);
-
 	}
 }
