@@ -10,8 +10,6 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.*;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.elasticsearch.core.*;
 import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.data.elasticsearch.core.query.IndexQuery;
@@ -24,25 +22,30 @@ import top.idwangmo.whitebird.elasticsearchdemo.entity.UserEsEntity;
 import top.idwangmo.whitebird.elasticsearchdemo.repository.UserEsRepository;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-
-@SpringBootTest
 class WhitebirdElasticsearchDemoApplicationTests {
 
-	@Autowired
-	private RestHighLevelClient highLevelClient;
+	private final RestHighLevelClient highLevelClient;
 
-	@Autowired
-	private ElasticsearchOperations elasticsearchOperations;
+	private final ElasticsearchOperations elasticsearchOperations;
 
-	@Autowired
-	private UserEsRepository userEsRepository;
+	private final UserEsRepository userEsRepository;
 
-	@Autowired
-	private ElasticsearchRestTemplate elasticsearchRestTemplate;
+	private final ElasticsearchRestTemplate elasticsearchRestTemplate;
+
+	public WhitebirdElasticsearchDemoApplicationTests(RestHighLevelClient highLevelClient,
+													  ElasticsearchOperations elasticsearchOperations,
+													  UserEsRepository userEsRepository,
+													  ElasticsearchRestTemplate elasticsearchRestTemplate) {
+		this.highLevelClient = highLevelClient;
+		this.elasticsearchOperations = elasticsearchOperations;
+		this.userEsRepository = userEsRepository;
+		this.elasticsearchRestTemplate = elasticsearchRestTemplate;
+	}
 
 	@Test
 	void testESClient() throws IOException {
@@ -66,6 +69,7 @@ class WhitebirdElasticsearchDemoApplicationTests {
 
 		MultiSearchRequest request = ElasticsearchTools.getRequest(ElasticsearchConstant.USER_INDEX, List.of(queryBuilder, queryBuilder2));
 		MultiSearchResponse msearch = highLevelClient.msearch(request, RequestOptions.DEFAULT);
+		System.out.println(Arrays.stream(msearch.getResponses()).map(MultiSearchResponse.Item::getResponse));
 	}
 
 	@Test
