@@ -15,7 +15,7 @@ public class DefaultOauth2WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addArgumentResolvers(
-        List<HandlerMethodArgumentResolver> resolvers) {
+            List<HandlerMethodArgumentResolver> resolvers) {
         resolvers.add(new TokenResolver());
     }
 }

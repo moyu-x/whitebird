@@ -21,7 +21,7 @@ public class WhitebirdAccessDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest request, HttpServletResponse response,
                        AccessDeniedException accessDeniedException) throws IOException, ServletException {
         ExceptionResponse exceptionResponse = ExceptionResponse.builder().code(HttpStatus.FORBIDDEN.value()).message(
-            "没有权限访问该资源").description(accessDeniedException.getMessage()).build();
+                "没有权限访问该资源").description(accessDeniedException.getMessage()).build();
 
         response.setStatus(HttpStatus.FORBIDDEN.value());
         response.setContentType("application/json; charset=UTF-8");

@@ -35,3 +35,6 @@ out/
 
 ### nodejs ###
 node_modules/
+
+### other ###
+rebel.xml
