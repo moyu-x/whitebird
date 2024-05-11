@@ -2,7 +2,6 @@ plugins {
     id 'org.springframework.boot' version "${springBootVersion}"
     id 'io.spring.dependency-management' version "${springDependencyManagement}"
     id 'java'
-    id 'maven'
     id 'maven-publish'
 }
 
@@ -13,6 +12,9 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    testImplementation "org.junit.jupiter:junit-jupiter:5.10.2"
+    testAnnotationProcessor 'org.projectlombok:lombok'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
@@ -21,8 +23,8 @@ dependencies {
     implementation "cn.hutool:hutool-all:${hutool}"
     implementation "com.google.code.gson:gson:${gson}"
     implementation "io.github.resilience4j:resilience4j-ratelimiter:${resilience4jVersion}"
-    implementation "javax.servlet:javax.servlet-api:${javaxServlet}"
-
+    implementation("jakarta.servlet:jakarta.servlet-api:6.0.0")
+    implementation "jakarta.annotation:jakarta.annotation-api:3.0.0"
 }
 
 dependencyManagement {
@@ -37,4 +39,7 @@ jar {
 
 bootJar {
     enabled = false
+}
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
 }

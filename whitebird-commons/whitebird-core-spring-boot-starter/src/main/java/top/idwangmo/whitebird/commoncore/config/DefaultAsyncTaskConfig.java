@@ -3,8 +3,8 @@ package top.idwangmo.whitebird.commoncore.config;
 import lombok.AllArgsConstructor;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurerSupport;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -19,10 +19,10 @@ import java.util.concurrent.ThreadPoolExecutor;
  *
  * @author idwangmo
  */
-@Configuration
 @EnableAsync
 @EnableScheduling
 @AllArgsConstructor
+@AutoConfiguration
 @EnableConfigurationProperties({WhitebirdAsyncProperties.class})
 public class DefaultAsyncTaskConfig extends AsyncConfigurerSupport {
 

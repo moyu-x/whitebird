@@ -2,9 +2,9 @@ package top.idwangmo.whitebird.commoncore.util;
 
 import cn.hutool.core.date.SystemClock;
 import cn.hutool.core.lang.UUID;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 
-import javax.annotation.PostConstruct;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;

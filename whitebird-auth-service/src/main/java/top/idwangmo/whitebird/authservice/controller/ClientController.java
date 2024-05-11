@@ -27,20 +27,20 @@ public class ClientController {
 
     @ApiOperation("通过ID查询应用")
     @GetMapping("{id}")
-    public ClientResponse retrieveClient(@PathVariable("id") Long id) {
+    public ClientResponse retrieveClient(@PathVariable Long id) {
         return clientService.retrieveClient(id);
     }
 
     @ApiOperation("分页查询应用")
     @GetMapping
-    public Page<ClientResponse> retrieveClient(@RequestParam(value = "page", defaultValue = "0") Integer page,
-                                               @RequestParam(value = "size", defaultValue = "20") Integer size) {
+    public Page<ClientResponse> retrieveClient(@RequestParam(defaultValue = "0") Integer page,
+                                               @RequestParam(defaultValue = "20") Integer size) {
         return clientService.retrieveClientList(PageRequest.of(page, size));
     }
 
     @ApiOperation("修改应用")
     @PutMapping("{id}")
-    public Long updateClient(@PathVariable("id") Long id,
+    public Long updateClient(@PathVariable Long id,
                              @RequestBody ClientRequest clientRequest) {
         return clientService.updateClient(id, clientRequest);
     }

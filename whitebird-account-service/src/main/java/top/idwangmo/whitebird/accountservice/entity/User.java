@@ -5,11 +5,11 @@ import lombok.Getter;
 import lombok.Setter;
 import top.idwangmo.whitebird.jpaspringbootstarter.model.BaseEntity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.validation.constraints.Email;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.Email;
 import java.util.Set;
 
 /**

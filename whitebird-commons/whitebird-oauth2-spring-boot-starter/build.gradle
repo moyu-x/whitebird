@@ -2,7 +2,6 @@ plugins {
 	id 'org.springframework.boot' version "${springBootVersion}"
 	id 'io.spring.dependency-management' version "${springDependencyManagement}"
 	id 'java'
-	id 'maven'
 	id 'maven-publish'
 }
 
@@ -19,7 +18,7 @@ dependencies {
 
 	implementation "com.google.code.gson:gson:${gson}"
 	implementation "cn.hutool:hutool-all:${hutool}"
-	compileOnly "javax.servlet:javax.servlet-api:${javaxServlet}"
+	compileOnly("jakarta.servlet:jakarta.servlet-api:6.0.0")
 }
 
 dependencyManagement {
@@ -34,4 +33,7 @@ jar {
 
 bootJar {
 	enabled = false
+}
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
 }

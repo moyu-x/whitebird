@@ -23,6 +23,6 @@ public interface WhitebirdUserClient {
      * @return 用户请求
      */
     @GetMapping("oauth2")
-    WhitebirdUserModel retrieveUsers(@RequestParam("username") String username);
+    WhitebirdUserModel retrieveUsers(@RequestParam String username);
 
 }

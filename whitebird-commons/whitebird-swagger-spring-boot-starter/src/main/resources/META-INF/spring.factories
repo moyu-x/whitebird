@@ -1,1 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=top.idwangmo.whitebird.swaggerspringbootstarter.config.SwaggerConfig

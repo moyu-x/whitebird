@@ -2,7 +2,6 @@ plugins {
     id 'org.springframework.boot' version "${springBootVersion}"
     id 'io.spring.dependency-management' version "${springDependencyManagement}"
     id 'java'
-    id 'maven'
     id 'maven-publish'
 }
 
@@ -22,4 +21,7 @@ jar {
 
 bootJar {
     enabled = false
+}
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
 }

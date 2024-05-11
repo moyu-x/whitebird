@@ -1,7 +1,7 @@
 package top.idwangmo.whitebird.webfluxspringbootstarter.config;
 
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
-import org.springframework.boot.autoconfigure.web.ResourceProperties;
+import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.boot.autoconfigure.web.reactive.error.DefaultErrorWebExceptionHandler;
 import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.reactive.error.ErrorAttributes;
@@ -35,7 +35,7 @@ public class WhitebirdErrorWebExceptionHandler extends DefaultErrorWebExceptionH
      * @param applicationContext the current application context
      */
     public WhitebirdErrorWebExceptionHandler(ErrorAttributes errorAttributes,
-                                             ResourceProperties resourceProperties,
+                                             WebProperties.Resources resourceProperties,
                                              ErrorProperties errorProperties,
                                              ApplicationContext applicationContext) {
         super(errorAttributes, resourceProperties, errorProperties, applicationContext);

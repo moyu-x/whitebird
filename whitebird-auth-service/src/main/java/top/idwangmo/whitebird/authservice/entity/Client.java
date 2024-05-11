@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import top.idwangmo.whitebird.jpaspringbootstarter.model.BaseEntity;
 
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 /**
  * Client 的配置.

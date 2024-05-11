@@ -1,5 +1,6 @@
 package top.idwangmo.whitebird.jpaspringbootstarter.config;
 
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 /**
@@ -7,6 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
  *
  * @author idwangmo
  */
+@AutoConfiguration
 @EnableJpaAuditing
 public class JpaConfiguration {
 }

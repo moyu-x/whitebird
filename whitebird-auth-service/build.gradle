@@ -21,7 +21,8 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-    runtimeOnly 'mysql:mysql-connector-java'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    testImplementation "org.junit.jupiter:junit-jupiter:5.10.2"
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
@@ -50,4 +51,7 @@ dependencyManagement {
 
 jib.from.image = "azul/zulu-openjdk-alpine:11"
 jib.to.image = "whitebird-auth-service"
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}
 

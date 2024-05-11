@@ -1,16 +1,16 @@
 package top.idwangmo.whitebird.accountservice.entity.repository;
 
+import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import top.idwangmo.whitebird.accountservice.entity.User;
-
-import java.util.List;
 
 /**
  * user repository.
  *
  * @author idwangmo
  */
-public interface UserRepository extends PagingAndSortingRepository<User, Long> {
+public interface UserRepository extends PagingAndSortingRepository<User, Long>, CrudRepository<User, Long> {
 
     /**
      * 判断用户名是否存在.

@@ -11,12 +11,14 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-config-client'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation "org.springframework.boot:spring-boot-starter-validation"
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.flywaydb:flyway-core'
     implementation 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'mysql:mysql-connector-java'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    testImplementation "org.junit.jupiter:junit-jupiter:5.10.2"
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
@@ -35,6 +37,8 @@ dependencies {
     implementation "io.springfox:springfox-swagger2:${swagger2}"
     implementation "io.springfox:springfox-swagger-ui:${swagger2}"
     implementation('io.micrometer:micrometer-registry-prometheus')
+    implementation "jakarta.validation:jakarta.validation-api:3.0.2"
+    implementation "cn.hutool:hutool-all:${hutool}"
 
 }
 
@@ -46,4 +50,7 @@ dependencyManagement {
 
 jib.from.image = "azul/zulu-openjdk-alpine:11"
 jib.to.image = "whitebird-account-service"
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}
 

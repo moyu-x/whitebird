@@ -1,7 +1,7 @@
 package top.idwangmo.whitebird.demoservice.config;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
@@ -13,17 +13,16 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
  */
 @Configuration
 @EnableResourceServer
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableMethodSecurity
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-            .requestMatchers()
-            .antMatchers("/**")
-            .and()
-            .authorizeRequests()
-            .antMatchers("/demos/current").authenticated();
+        http.csrf(csrf -> csrf
+            .requestMatchers(matchers -> matchers
+                .requestMatchers("/**"))
+            .authorizeRequests(requests -> requests
+                .requestMatchers("/demos/current").authenticated()));
     }
 
 }

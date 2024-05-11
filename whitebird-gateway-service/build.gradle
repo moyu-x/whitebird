@@ -20,6 +20,7 @@ dependencies {
     }
     testImplementation 'io.projectreactor:reactor-test'
 
+    testImplementation "org.junit.jupiter:junit-jupiter:5.10.2"
     implementation project(':whitebird-commons').project('whitebird-core-spring-boot-starter')
 
     implementation('io.micrometer:micrometer-registry-prometheus')

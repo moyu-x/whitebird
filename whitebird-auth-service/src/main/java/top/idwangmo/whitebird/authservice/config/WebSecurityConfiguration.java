@@ -22,7 +22,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
      * @return Authentication
      * @throws Exception exception
      */
-    @Bean
+    /*~~(Migrate manually based on https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter)~~>*/@Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
@@ -31,13 +31,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
-        http.csrf().disable()
-            .requestMatchers().antMatchers("/oauth/**", "/login/**", "/logout/**", "/users/registry")
-            .and()
-                .authorizeRequests()
-                .antMatchers("/oauth/**").authenticated()
-            .and()
-                .formLogin().permitAll();
+        http.csrf(csrf -> csrf
+            .requestMatchers(matchers -> matchers.requestMatchers("/oauth/**", "/login/**", "/logout/**", "/users/registry"))
+            .authorizeRequests(requests -> requests
+                .requestMatchers("/oauth/**").authenticated())
+            .formLogin(login -> login.permitAll()));
         // @formatter:on
     }
 }

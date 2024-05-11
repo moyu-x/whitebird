@@ -24,6 +24,7 @@ dependencies {
     }
     testImplementation 'io.projectreactor:reactor-test'
 
+    testImplementation "org.junit.jupiter:junit-jupiter:5.10.2"
     implementation project(':whitebird-commons').project('whitebird-oauth2-spring-boot-starter')
     implementation project(':whitebird-commons').project('whitebird-core-spring-boot-starter')
     implementation('io.micrometer:micrometer-registry-prometheus')
@@ -37,3 +38,6 @@ dependencyManagement {
 
 jib.from.image = "azul/zulu-openjdk-alpine:11"
 jib.to.image = "whitebird-demo-service"
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}

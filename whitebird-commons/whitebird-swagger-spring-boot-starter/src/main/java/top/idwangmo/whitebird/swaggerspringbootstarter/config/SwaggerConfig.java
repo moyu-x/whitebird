@@ -5,10 +5,10 @@ import com.google.common.base.Predicates;
 import com.google.common.collect.Lists;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMethod;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
  *
  * @author idwangmo
  */
-@Configuration
+@AutoConfiguration
 @EnableSwagger2
 @RequiredArgsConstructor
 @ConditionalOnProperty("whitebird.swagger.enabled")

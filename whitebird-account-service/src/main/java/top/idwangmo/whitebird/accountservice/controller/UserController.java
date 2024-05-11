@@ -1,11 +1,11 @@
 package top.idwangmo.whitebird.accountservice.controller;
 
+import cn.hutool.core.util.StrUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import top.idwangmo.whitebird.accountservice.model.response.UserResponse;
 import top.idwangmo.whitebird.accountservice.service.UserService;
 import top.idwangmo.whitebird.commoncore.exception.BadRequestException;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 /**
  * user controller.
@@ -33,22 +33,22 @@ public class UserController {
 
     @ApiOperation("通过ID获取用户")
     @GetMapping("{id}")
-    public UserResponse retrieveUser(@PathVariable("id") Long id) {
+    public UserResponse retrieveUser(@PathVariable Long id) {
         return userService.retrieveUser(id);
     }
 
     @ApiOperation("用户列表")
     @GetMapping
-    public PageImpl<UserResponse> retrieveUserPage(@RequestParam(value = "page", defaultValue = "0") Integer page,
-                                                   @RequestParam(value = "size", defaultValue = "20") Integer size) {
+    public PageImpl<UserResponse> retrieveUserPage(@RequestParam(defaultValue = "0") Integer page,
+                                                   @RequestParam(defaultValue = "20") Integer size) {
         return userService.retrieveUserPage(PageRequest.of(page, size));
     }
 
     @ApiOperation("用户列表")
     @GetMapping("oauth2")
-    public UserResponse retrieveUserByOauth2(@ApiParam("用户名称") @RequestParam("username") String username) {
+    public UserResponse retrieveUserByOauth2(@ApiParam("用户名称") @RequestParam String username) {
 
-        if (StringUtils.isBlank(username)) {
+        if (StrUtil.isBlank(username)) {
             throw new BadRequestException("用户名不能为空");
         }
         return userService.retrieveUserByOauth2(username);
@@ -62,7 +62,7 @@ public class UserController {
 
     @ApiOperation("修改用户")
     @PutMapping("{id}")
-    public Long updateUser(@PathVariable("id")Long id,
+    public Long updateUser(@PathVariable Long id,
                            @RequestBody UserRequest userRequest) {
         return userService.updateUser(id, userRequest);
     }
@@ -70,7 +70,7 @@ public class UserController {
     @ApiOperation("删除用户")
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteUser(@PathVariable("id") Long id) {
+    public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }
 

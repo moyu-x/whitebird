@@ -16,10 +16,9 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.requestMatchers().antMatchers("/users/**")
-                .and()
-                .authorizeRequests()
-                .antMatchers("/users/current").authenticated();
+        http.requestMatchers(matchers -> matchers
+            .authorizeRequests(requests -> requests
+                .requestMatchers("/users/current").authenticated()));
     }
 
 }
