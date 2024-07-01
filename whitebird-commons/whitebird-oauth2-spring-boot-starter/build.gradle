@@ -6,7 +6,7 @@ plugins {
 }
 
 dependencies {
-	implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
+//	implementation 'org.springframework.boot:spring-boot-starter-oauth2-authorization-server'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'

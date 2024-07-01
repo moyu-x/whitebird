@@ -18,7 +18,7 @@ dependencies {
 
 }
 
-jib.from.image = "azul/zulu-openjdk-alpine:11"
+jib.from.image = "azul/zulu-openjdk-alpine:17"
 jib.to.image = "whitebird-gateway-service"
 tasks.withType(Test).configureEach {
     useJUnitPlatform()

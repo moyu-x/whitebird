@@ -16,9 +16,9 @@ dependencies {
 
     implementation 'org.springframework.cloud:spring-cloud-config-client'
     implementation 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
-    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
+//    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-    implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-authorization-server'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     runtimeOnly 'com.mysql:mysql-connector-j'
@@ -49,7 +49,7 @@ dependencyManagement {
     }
 }
 
-jib.from.image = "azul/zulu-openjdk-alpine:11"
+jib.from.image = "azul/zulu-openjdk-alpine:17"
 jib.to.image = "whitebird-auth-service"
 tasks.withType(Test).configureEach {
     useJUnitPlatform()

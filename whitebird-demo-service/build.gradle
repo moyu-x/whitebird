@@ -8,7 +8,7 @@ plugins {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.cloud:spring-cloud-starter-oauth2'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
     implementation 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
@@ -36,7 +36,7 @@ dependencyManagement {
     }
 }
 
-jib.from.image = "azul/zulu-openjdk-alpine:11"
+jib.from.image = "azul/zulu-openjdk-alpine:17"
 jib.to.image = "whitebird-demo-service"
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
